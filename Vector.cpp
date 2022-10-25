@@ -2,7 +2,7 @@
  * and the amount of recompilation needed when you change the implementation
  */
 
-#include "./Vector.h"
+#include "Vector.h"
 
 
 float cga::crossProduct2D(Vector2f v1, Vector2f v2) {

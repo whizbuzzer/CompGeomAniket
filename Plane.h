@@ -1,7 +1,7 @@
 #pragma once
 
-#include "./Vector.h"
-#include "./Point.h"
+#include "Vector.h"
+#include "Point.h"
 
 namespace cga {
     
@@ -21,7 +21,7 @@ namespace cga {
             d = Vector<coordinate_type, DIM3>::dotProduct(normal, p);
         }
 
-        Plane(Vector3f& p1, Vector3f& p2, Vector3f& p3) {
+        Plane(Point3D& p1, Point3D& p2, Point3D& p3) {
             /* The three points would help us find the normal (A, B, C),
              * but, we could also use the property of cross-products that
              * cross-product of two vectors is perpendicular to both of them

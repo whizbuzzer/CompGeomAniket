@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Point.h"
 #include "Line.h"
 #include "Plane.h"
+#include "Point.h"
 
 namespace cga {
     

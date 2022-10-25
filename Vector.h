@@ -5,11 +5,11 @@
 #pragma once
 
 #include <array>
+#include <cfloat>  // For FLT_MIN
 #include <iostream>
 #include <type_traits>
-#include <cfloat>  // For FLT_MIN
 
-#include "./Core.h"
+#include "Core.h"
 
 namespace cga {
 
@@ -25,15 +25,16 @@ namespace cga {
      */
     template<typename coordinate_type, size_t dimensions> class Vector;
 
+    // Forward declaration so that friend declaration could be used
     template<typename coordinate_type, size_t dimensions>
     float dotProduct(const Vector<coordinate_type, dimensions>&, const Vector<coordinate_type, dimensions>&);
 
     template<typename coordinate_type, size_t dimensions>
     class Vector {
         // To ensure that only arithmetic values are stored in the vector
-        static_assert(std::is_arithmetic<coordinate_type>::value == true, "b");
+        static_assert(std::is_arithmetic<coordinate_type>::value == true, "Vector can store only arithmetic values");
         // To ensure that the vector is at least 2D
-        static_assert(dimensions >= DIM2, "Vector should at least be 2-dimensional.");
+        static_assert(dimensions >= DIM2, "Vector should at least be 2-dimensional");
 
         // For storing the components:
         std::array<coordinate_type, dimensions> coords = {};
@@ -57,7 +58,7 @@ namespace cga {
 
         /* Operators. Would be defined outside the class so that they can be modified as needed */
         // Indexing operator
-        coordinate_type operator [] (int) const;
+        coordinate_type operator [] (const unsigned int) const;
 
         // Equality check
         bool operator == (const Vector<coordinate_type, dimensions>&) const;
@@ -102,7 +103,7 @@ namespace cga {
 
     // Fetches value from a certain index
     template<typename coordinate_type, size_t dimensions>
-    inline coordinate_type Vector<coordinate_type, dimensions>::operator [] (int _index) const {
+    inline coordinate_type Vector<coordinate_type, dimensions>::operator [] (const unsigned int _index) const {
         if (_index >= coords.size()) {
             std::cout << "Index out of bound\n" << std::endl;
             return coordinate_type();
@@ -220,14 +221,18 @@ namespace cga {
         if (v1.coords.size() != v2.coords.size()) {
             std::cout << "Vectors are not of the same size/dimension. Vectors must be of same size for dot product" << std::endl;
             return FLT_MIN;  // from <cfloat>
+        } else {
+            // Vector<coordinate_type, dimensions> resultVector = v1 * v2;
+            float result = 0;
+            for (size_t i = 0; i < v1.coords.size(); i++) {
+                std::cout << "result: " << result << std::endl;
+                std::cout << "v1[i]: " << v1[i] << std::endl;
+                std::cout << "v2[i]: " << v2[i] << std::endl;
+                result += v1[i] * v2[i];  // No need to use .coords since assignment operator has already been defined.
+            }
+            std::cout << "result: " << result << std::endl;
+            return result;
         }
-
-        // Vector<coordinate_type, dimensions> resultVector = v1 * v2;
-        float result = 0;
-        for (size_t i; i < v1.coords.size(); i++) {
-            result += v1[i] * v2[i];  // No need to use .coords since assignment operator has already been defined.
-        }
-        return result;
     }
 
     // Cross product of two vectors
@@ -255,8 +260,10 @@ namespace cga {
     // Magnitude of a vector
     template<typename coordinate_type, size_t dimensions>
     inline float Vector<coordinate_type, dimensions>::magnitude() const {
-        float result_square = 0;
+        float result_square = 0.0f;
         for (size_t i = 0; i < dimensions; i++) {
+            // std::cout << "result_square: " << result_square << std::endl;
+            // std::cout << "coords[i]: " << coords[i] << std::endl;
             result_square += pow(coords[i], 2.0);
         }
 

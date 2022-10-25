@@ -1,39 +1,60 @@
 #pragma once
 
-#include "./Vector.h"
+#include "Vector.h"
+#include "Point.h"
 
 namespace cga {
-    
-    template <typename coordinate_type, size_t dimensions = DIM3>
-    class Line {
+    class Line3D {
         // Line can be identified by a point and a direction
-        Vector<coordinate_type, dimensions> point;
-        Vector<coordinate_type, dimensions> direction;
+        Vector3f direction;
+        Point3D point;
 
     public:
-        Line() {}
+        // Default
+        Line3D() {}
 
-        Line(Vector<coordinate_type, dimensions>& p1, Vector<coordinate_type, dimensions>& p2) {
+        // Two points
+        Line3D(Point3D& p1, Point3D& p2) {
+            point = p1;
             direction = p2 - p1;  // Thanks to overloaded vector operator
             direction.normalize();  // For faster calculations
-            point = p1;
         }
 
-        Vector<coordinate_type, dimensions> getPoint() const;
-        Vector<coordinate_type, dimensions> getDirection() const;
+        // Direction and point
+        Line3D(Vector3f dir, Point3D pt) {
+            direction = dir;
+            point = pt;
+        }
+
+        Point3D getPoint() const;
+        Vector3f getDirection() const;
     };
 
-    template <typename coordinate_type, size_t dimensions>
-    Vector<coordinate_type, dimensions> Line<coordinate_type, dimensions>::getPoint() const {
-        return point;
-    }
+    class Line2D {
+        Vector2f direction;
+        Point2D point;
+        Vector2f normal_vec;
 
-    template <typename coordinate_type, size_t dimensions>
-    Vector<coordinate_type, dimensions> Line<coordinate_type, dimensions>::getDirection() const {
-        return direction;
-    }
+    public:
+        // Default
+        Line2D() {}
 
-    // 2D and 3D lines
-    typedef Line<float, DIM2> Line2D;
-    typedef Line<float, DIM3> Line3D;
+        // // Two points
+        // Line2D(Point2D& p1, Point2D& p2) {
+        //     point = p1;
+        //     direction = p2 - p1;  // Thanks to overloaded vector operator
+        //     direction.normalize();  // For faster calculations
+        // }
+
+        // Direction and point
+        Line2D(Vector2f dir, Point2D pt) {
+            direction = dir;
+            direction.normalize();
+            point = pt;
+        }
+
+        Vector2f getDirection() const;
+        Point2D getPoint() const;
+        Vector2f getNormalVector() const;
+    };
 }

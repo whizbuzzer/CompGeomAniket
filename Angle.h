@@ -5,5 +5,5 @@
 #include "Plane.h"
 
 namespace cga {
-    float AngleLines2D(const Line2D& l1, const Line2D& l2);
+    float angleLines2D(const Line2D& l1, const Line2D& l2);
 }

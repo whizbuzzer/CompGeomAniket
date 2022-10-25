@@ -5,7 +5,7 @@
 
 namespace cga {
 
-    #define TOLERANCE 0.0000001  // For performing an operation till the 7th decimal
+    #define TOLERANCE 0.0001  // For performing an operation till the 7th decimal
 
     enum RELATIVE_POSITION {
         LEFT, RIGHT, BEHIND, BEYOND, BETWEEN, ORIGIN, DESTINATION
@@ -21,10 +21,10 @@ namespace cga {
     }
 
     static float radians2Degrees(float radians) {
-        return radians * (180 / M_PI);
+        return radians * 360 / (2 * M_PI);
     }
 
     static float degrees2Radians(float degrees) {
-        return degrees * (M_PI / 180);
+        return degrees * (M_PI * 2) / 360;
     }
 }
