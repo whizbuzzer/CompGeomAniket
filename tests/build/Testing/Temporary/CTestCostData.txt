@@ -1,2 +1,3 @@
-AngleTest.AngleLines2DTest1 1 0.00189323
+AngleTest.AngleLines2DTest1 7 0.000258071
+AngleTest.AngleLines3DTest1 1 0.00140091
 ---

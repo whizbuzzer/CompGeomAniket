@@ -156,7 +156,7 @@ namespace cga {
     inline Vector<coordinate_type, dimensions> Vector<coordinate_type, dimensions>::operator + (const Vector<coordinate_type, dimensions>& _other) const {
         std::array<coordinate_type, dimensions> result;
 
-        for (size_t i; i < dimensions; i++) {
+        for (size_t i = 0; i < dimensions; i++) {
             result[i] = coords[i] + _other.coords[i];
         }
 
@@ -168,7 +168,7 @@ namespace cga {
     Vector<coordinate_type, dimensions> Vector<coordinate_type, dimensions>::operator - (const Vector<coordinate_type, dimensions>& _other) const {
         std::array<coordinate_type, dimensions> result;
 
-        for (size_t i; i < dimensions; i++) {
+        for (size_t i = 0; i < dimensions; i++) {
             result[i] = coords[i] - _other.coords[i];
         }
 
@@ -180,7 +180,7 @@ namespace cga {
     inline Vector<coordinate_type, dimensions> Vector<coordinate_type, dimensions>::operator * (const Vector<coordinate_type, dimensions>& _other) const {
         std::array<coordinate_type, dimensions> result;
 
-        for (size_t i; i < dimensions; i++) {
+        for (size_t i = 0; i < dimensions; i++) {
             result[i] = coords[i] * _other.coords[i];
         }
 
@@ -192,7 +192,7 @@ namespace cga {
     inline Vector<coordinate_type, dimensions> Vector<coordinate_type, dimensions>::operator / (const Vector<coordinate_type, dimensions>& _other) const {
         std::array<coordinate_type, dimensions> result;
 
-        for (size_t i; i < dimensions; i++) {
+        for (size_t i = 0; i < dimensions; i++) {
             result[i] = coords[i] / _other.coords[i];
         }
 

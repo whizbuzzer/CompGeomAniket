@@ -70,6 +70,20 @@ them later) in order to properly implement them as "friend"
     cmake --build build
     cd build && ctest
     ```
+
+
+## Ctest stuff
+    In case the test fails and you wanna see what went wrong,
+    ```
+    ctest -R alkimia-alkinvoice
+    ```
+    will make only the failing test run, and
+    ```
+    ctest -R alkimia-alkinvoice -VV
+    ```
+    will make only the failing test run as well as display its output.
+    [Source](https://stackoverflow.com/questions/6931143/how-to-find-where-the-error-is-while-running-ctest)
+
     
 ## 21/10/2022
     > Reference: https://www.youtube.com/watch?v=6dqFqh3UbPY

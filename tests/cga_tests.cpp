@@ -28,7 +28,24 @@ TEST(AngleTest, AngleLines2DTest1) {
     EXPECT_TRUE(cga::isEqualD(53.1301, angle));
 }
 
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+TEST(AngleTest, AngleLines3DTest1) {
+    // Defining point and directions for lines:
+    cga::Point3D l1P1(1, 5, 5);
+    cga::Point3D l2P1(-3, -3, 0);
+    cga::Point3D l1P2(1.5, -5, -2);
+    cga::Point3D l2P2(3, 5, 2);
+
+    // Defining lines using above points and directions
+    cga::Line3D l1(l1P1, l1P2);
+    cga::Line3D l2(l2P1, l2P2);
+
+    auto angle = cga::angleLines3D(l1, l2);
+    std::cout << angle << std::endl; 
+
+    EXPECT_TRUE(cga::isEqualD(43.0791, angle));
 }
+
+// int main(int argc, char** argv) {
+//     ::testing::InitGoogleTest(&argc, argv);
+//     return RUN_ALL_TESTS();
+// }

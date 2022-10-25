@@ -20,11 +20,11 @@ namespace cga {
             direction.normalize();  // For faster calculations
         }
 
-        // Direction and point
-        Line3D(Vector3f dir, Point3D pt) {
-            direction = dir;
-            point = pt;
-        }
+        // // Direction and point
+        // Line3D(Vector3f dir, Point3D pt) {
+        //     direction = dir;
+        //     point = pt;
+        // }
 
         Point3D getPoint() const;
         Vector3f getDirection() const;
@@ -47,7 +47,7 @@ namespace cga {
         // }
 
         // Direction and point
-        Line2D(Vector2f dir, Point2D pt) {
+        Line2D(Vector2f& dir, Point2D& pt) {
             direction = dir;
             direction.normalize();
             point = pt;

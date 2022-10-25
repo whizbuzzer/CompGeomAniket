@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Angle.cpp
-Angle.h
-/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Angle.h
-Core.h
-/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Core.h
-
 /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Angle.h
 Line.h
 /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Line.h
@@ -21,10 +15,6 @@ Plane.h
 /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Core.h
 math.h
 -
-
-/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Line.cpp
-Line.h
-/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Line.h
 
 /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Line.h
 Vector.h

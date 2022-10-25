@@ -5,5 +5,9 @@
 #include "Plane.h"
 
 namespace cga {
+    // Lines could be parellel or intersecting
     float angleLines2D(const Line2D& l1, const Line2D& l2);
+
+    // Lines could be parellel, intersecting or skewed
+    float angleLines3D(const Line3D& l1, const Line3D& l2);
 }
