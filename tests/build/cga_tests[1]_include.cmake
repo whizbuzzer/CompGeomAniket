@@ -1,0 +1,5 @@
+if(EXISTS "/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/cga_tests[1]_tests.cmake")
+  include("/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/cga_tests[1]_tests.cmake")
+else()
+  add_test(cga_tests_NOT_BUILT cga_tests_NOT_BUILT)
+endif()

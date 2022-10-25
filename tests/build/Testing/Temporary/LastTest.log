@@ -1,0 +1,39 @@
+Start testing: Oct 24 19:10 PDT
+----------------------------------------------------------
+1/1 Testing: AngleTest.AngleLines2DTest1
+1/1 Test: AngleTest.AngleLines2DTest1
+Command: "/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/cga_tests" "--gtest_filter=AngleTest.AngleLines2DTest1" "--gtest_also_run_disabled_tests"
+Directory: /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build
+"AngleTest.AngleLines2DTest1" start time: Oct 24 19:10 PDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = AngleTest.AngleLines2DTest1
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from AngleTest
+[ RUN      ] AngleTest.AngleLines2DTest1
+result: 0
+v1[i]: 0.894427
+v2[i]: -0.894427
+result: -0.8
+v1[i]: 0.447214
+v2[i]: 0.447214
+result: -0.6
+angle in radians: 0.927295
+angle in degrees: 53.1301
+53.1301
+[       OK ] AngleTest.AngleLines2DTest1 (0 ms)
+[----------] 1 test from AngleTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"AngleTest.AngleLines2DTest1" end time: Oct 24 19:10 PDT
+"AngleTest.AngleLines2DTest1" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 24 19:10 PDT
