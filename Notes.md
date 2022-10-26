@@ -39,6 +39,9 @@
     Source: https://en.wikipedia.org/wiki/Pragma_once
 
 
+## Template classes need their methods declared as "inline"
+
+
 ## Forward declarations
     > Use forward declarations of methods/classes (declare them first and define 
 them later) in order to properly implement them as "friend"

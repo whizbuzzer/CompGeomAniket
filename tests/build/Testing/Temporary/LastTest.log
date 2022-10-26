@@ -1,10 +1,10 @@
-Start testing: Oct 25 14:12 PDT
+Start testing: Oct 26 08:47 PDT
 ----------------------------------------------------------
-1/2 Testing: AngleTest.AngleLines2DTest1
-1/2 Test: AngleTest.AngleLines2DTest1
+1/4 Testing: AngleTest.AngleLines2DTest1
+1/4 Test: AngleTest.AngleLines2DTest1
 Command: "/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/cga_tests" "--gtest_filter=AngleTest.AngleLines2DTest1" "--gtest_also_run_disabled_tests"
 Directory: /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build
-"AngleTest.AngleLines2DTest1" start time: Oct 25 14:12 PDT
+"AngleTest.AngleLines2DTest1" start time: Oct 26 08:47 PDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -13,8 +13,6 @@ Note: Google Test filter = AngleTest.AngleLines2DTest1
 [----------] Global test environment set-up.
 [----------] 1 test from AngleTest
 [ RUN      ] AngleTest.AngleLines2DTest1
-l1 direction magnitude: 1
-l2 direction magnitude: 1
 result: 0
 v1[i]: 0.894427
 v2[i]: -0.894427
@@ -33,15 +31,15 @@ result: -0.6
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"AngleTest.AngleLines2DTest1" end time: Oct 25 14:12 PDT
+"AngleTest.AngleLines2DTest1" end time: Oct 26 08:47 PDT
 "AngleTest.AngleLines2DTest1" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/2 Testing: AngleTest.AngleLines3DTest1
-2/2 Test: AngleTest.AngleLines3DTest1
+2/4 Testing: AngleTest.AngleLines3DTest1
+2/4 Test: AngleTest.AngleLines3DTest1
 Command: "/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/cga_tests" "--gtest_filter=AngleTest.AngleLines3DTest1" "--gtest_also_run_disabled_tests"
 Directory: /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build
-"AngleTest.AngleLines3DTest1" start time: Oct 25 14:12 PDT
+"AngleTest.AngleLines3DTest1" start time: Oct 26 08:47 PDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -50,8 +48,6 @@ Note: Google Test filter = AngleTest.AngleLines3DTest1
 [----------] Global test environment set-up.
 [----------] 1 test from AngleTest
 [ RUN      ] AngleTest.AngleLines3DTest1
-l1 direction magnitude: 1
-l2 direction magnitude: 1
 result: 0
 v1[i]: 0.0409273
 v2[i]: 0.588348
@@ -73,8 +69,84 @@ result: -0.730411
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"AngleTest.AngleLines3DTest1" end time: Oct 25 14:12 PDT
+"AngleTest.AngleLines3DTest1" end time: Oct 26 08:47 PDT
 "AngleTest.AngleLines3DTest1" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Oct 25 14:12 PDT
+3/4 Testing: AngleTest.AngleLinePlaneTest1
+3/4 Test: AngleTest.AngleLinePlaneTest1
+Command: "/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/cga_tests" "--gtest_filter=AngleTest.AngleLinePlaneTest1" "--gtest_also_run_disabled_tests"
+Directory: /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build
+"AngleTest.AngleLinePlaneTest1" start time: Oct 26 08:47 PDT
+Output:
+----------------------------------------------------------
+Running main() from /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = AngleTest.AngleLinePlaneTest1
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from AngleTest
+[ RUN      ] AngleTest.AngleLinePlaneTest1
+result: 0
+v1[i]: 0.497468
+v2[i]: -0.5606
+result: -0.278881
+v1[i]: 0.497468
+v2[i]: 0.366395
+result: -0.0966109
+v1[i]: 0.710669
+v2[i]: 0.742618
+result: 0.431145
+25.5402
+[       OK ] AngleTest.AngleLinePlaneTest1 (0 ms)
+[----------] 1 test from AngleTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"AngleTest.AngleLinePlaneTest1" end time: Oct 26 08:47 PDT
+"AngleTest.AngleLinePlaneTest1" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/4 Testing: AngleTest.AnglePlanesTest1
+4/4 Test: AngleTest.AnglePlanesTest1
+Command: "/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/cga_tests" "--gtest_filter=AngleTest.AnglePlanesTest1" "--gtest_also_run_disabled_tests"
+Directory: /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build
+"AngleTest.AnglePlanesTest1" start time: Oct 26 08:47 PDT
+Output:
+----------------------------------------------------------
+Running main() from /home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/tests/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = AngleTest.AnglePlanesTest1
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from AngleTest
+[ RUN      ] AngleTest.AnglePlanesTest1
+result: 0
+v1[i]: 0.575515
+v2[i]: 0.843872
+result: 0.485661
+v1[i]: 0.143879
+v2[i]: -0.35786
+result: 0.434172
+v1[i]: 0.805035
+v2[i]: -0.399771
+result: 0.112342
+angle between 2 planes83.5496
+[       OK ] AngleTest.AnglePlanesTest1 (0 ms)
+[----------] 1 test from AngleTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"AngleTest.AnglePlanesTest1" end time: Oct 26 08:47 PDT
+"AngleTest.AnglePlanesTest1" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 26 08:47 PDT

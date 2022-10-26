@@ -9,6 +9,7 @@
  */
 
 // TestCase = TestSuite. TestCase is a legacy term and being deprecated.
+// TestSuite is the group. TestName is a test in that group.
 
 // TEST(TestSuiteName. TestName)
 TEST(AngleTest, AngleLines2DTest1) {
@@ -43,6 +44,37 @@ TEST(AngleTest, AngleLines3DTest1) {
     std::cout << angle << std::endl; 
 
     EXPECT_TRUE(cga::isEqualD(43.0791, angle));
+}
+
+TEST(AngleTest, AngleLinePlaneTest1) {
+    // Defining points and normal for line and plane respectively:
+    cga::Point3D l1P1(-3, -4, -5);
+    cga::Point3D l1P2(4, 3, 5);
+    cga::Vector3f pNormal(-14.26, 9.32, 18.89);
+
+    // Defining line and plane using points and normal respectively
+    cga::Line3D l1(l1P1, l1P2);
+    cga::Planef p(pNormal);
+
+    auto angle = cga::angleLinePlane(l1, p);
+    std::cout << angle << std::endl; 
+
+    EXPECT_TRUE(cga::isEqualD(25.5402, angle));
+}
+
+TEST(AngleTest, AnglePlanesTest1) {
+    // Defining normals for planes
+    cga::Vector3f p1Normal(1.68, 0.42, 2.35);
+    cga::Vector3f p2Normal(10.47, -4.44, -4.96);
+
+    // Defining planes using above normals
+    cga::Planef p1(p1Normal);
+    cga::Planef p2(p2Normal);
+
+    auto angle = cga::anglePlanes(p1, p2);
+    std::cout << "angle between 2 planes" << angle << std::endl; 
+
+    EXPECT_TRUE(cga::isEqualD(83.5496, angle));
 }
 
 // int main(int argc, char** argv) {

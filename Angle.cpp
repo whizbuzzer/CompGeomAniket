@@ -17,13 +17,14 @@ namespace cga {
     static float getAngle(cga::Vector<T, dimensions> v1, cga::Vector<T, dimensions> v2) {
         // auto l1_mag = l1.getDirection().magnitude();
         // auto l2_mag = l2.getDirection().magnitude();
-        std::cout << "l1 direction magnitude: " << v1.magnitude() << std::endl;
-        std::cout << "l2 direction magnitude: " << v2.magnitude() << std::endl;
 
         auto v1_dot_v2 = dotProduct(v1, v2);
 
         // float angle = acos(fabs(l1_dot_l2) / (l1_mag * l2_mag));
 
+        /* (l1_mag * l2_mag) need not be considered because both of their
+         * magnitudes are 1 due to being normalized
+         */
         float angle = acos(fabs(v1_dot_v2));  // * (180 / M_PI);
         return radians2Degrees(angle);
     }
@@ -42,5 +43,14 @@ namespace cga {
         // between the new line and l1
         // Implementation will be the same as 2D lines however.
         return getAngle(l1.getDirection(), l2.getDirection());
+    }
+
+    float angleLinePlane(const Line3D& l, const Planef& p) {
+        auto theta = getAngle(l.getDirection(), p.getNormal());
+        return 90 - theta;
+    }
+
+    float anglePlanes(const Planef& p1, const Planef& p2) {
+        return getAngle(p1.getNormal(), p2.getNormal());
     }
 }
