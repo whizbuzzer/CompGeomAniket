@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/cga_tests.dir/cga_tests.cpp.o CMakeFiles/cga_tests.dir/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Angle.cpp.o CMakeFiles/cga_tests.dir/home/whizbuzzer/Desktop/CPP_projects/CompGeomAniket/Line.cpp.o  -o cga_tests  lib/libgtest_main.a lib/libgtest.a -lpthread 
