@@ -46,8 +46,26 @@ namespace cga {
              */
         }
 
+        /* Operators */
+        // Equality check
+        bool operator == (const Plane<coordinate_type>& _other) {
+            if (normal == _other.normal && isEqualD(d, _other.d)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        bool operator != (const Plane<coordinate_type>& _other) {
+            return !(*this != _other);
+        }
+
         Vector3f getNormal() const {
             return normal;
+        }
+
+        float getd() const {
+            return d;
         }
     };
 

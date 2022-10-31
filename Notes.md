@@ -95,3 +95,7 @@ them later) in order to properly implement them as "friend"
     (Check with "sudo apt show libgtest-dev")
 
     > Overcome this with "sudo apt install libgtest-dev googletest"
+
+## Geogebra is a good tool for visualization purposes
+https://www.geogebra.org/
+

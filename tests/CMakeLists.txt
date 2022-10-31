@@ -21,6 +21,7 @@ add_executable(
     cga_tests.cpp
     ../Angle.cpp
     ../Line.cpp
+    ../Vector.cpp
 )
 target_link_libraries(
     cga_tests

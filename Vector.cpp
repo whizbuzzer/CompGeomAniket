@@ -17,3 +17,9 @@ cga::Vector3f cga::crossProduct3D(Vector3f v1, Vector3f v2) {
 
     return Vector3f(_x, _y, _z);
 }
+
+float cga::scalarTripleProduct(Vector3f v1, Vector3f v2, Vector3f v3) {
+    auto v2_cross_v3 = crossProduct3D(v2, v3);
+    
+    return dotProduct(v1, v2_cross_v3);
+}

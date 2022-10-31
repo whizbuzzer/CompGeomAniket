@@ -78,10 +78,16 @@ namespace cga {
         // Subtraction
         Vector<coordinate_type, dimensions> operator - (const Vector<coordinate_type, dimensions>&) const;
 
-        // Multiplication
+        // Multiplication with scalar
+        Vector<coordinate_type, dimensions> operator * (coordinate_type) const;
+
+        // Multiplication with another vector element-wise
         Vector<coordinate_type, dimensions> operator * (const Vector<coordinate_type, dimensions>&) const;
 
-        // Division
+        // Division with scalar
+        Vector<coordinate_type, dimensions> operator / (coordinate_type) const;
+
+        // Division with another vector element-wise
         Vector<coordinate_type, dimensions> operator / (const Vector<coordinate_type, dimensions>&) const;
 
         /* Functions. Would be defined outside the class so that they can be modified as needed */
@@ -175,7 +181,19 @@ namespace cga {
         return Vector<coordinate_type, dimensions>(result);
     }
 
-    // Multiplies one vector with another
+    // Multiples vector with scalar
+    template<typename coordinate_type, size_t dimensions>
+    inline Vector<coordinate_type, dimensions> Vector<coordinate_type, dimensions>::operator * (coordinate_type scale) const {
+        std::array<coordinate_type, dimensions> result;
+
+        for (size_t i = 0; i < dimensions; i++) {
+            result[i] = coords[i] * scale;
+        }
+
+        return Vector<coordinate_type, dimensions>(result);
+    }
+
+    // Multiplies one vector with another element-wise
     template<typename coordinate_type, size_t dimensions>
     inline Vector<coordinate_type, dimensions> Vector<coordinate_type, dimensions>::operator * (const Vector<coordinate_type, dimensions>& _other) const {
         std::array<coordinate_type, dimensions> result;
@@ -187,7 +205,19 @@ namespace cga {
         return Vector<coordinate_type, dimensions>(result);
     }
 
-    // Divides one vector with another
+    // Divides vector with scalar
+    template<typename coordinate_type, size_t dimensions>
+    inline Vector<coordinate_type, dimensions> Vector<coordinate_type, dimensions>::operator / (coordinate_type scale) const {
+        std::array<coordinate_type, dimensions> result;
+
+        for (size_t i = 0; i < dimensions; i++) {
+            result[i] = coords[i] / scale;
+        }
+
+        return Vector<coordinate_type, dimensions>(result);
+    }
+
+    // Divides one vector with another element-wise
     template<typename coordinate_type, size_t dimensions>
     inline Vector<coordinate_type, dimensions> Vector<coordinate_type, dimensions>::operator / (const Vector<coordinate_type, dimensions>& _other) const {
         std::array<coordinate_type, dimensions> result;
@@ -225,12 +255,12 @@ namespace cga {
             // Vector<coordinate_type, dimensions> resultVector = v1 * v2;
             float result = 0;
             for (size_t i = 0; i < v1.coords.size(); i++) {
-                std::cout << "result: " << result << std::endl;
-                std::cout << "v1[i]: " << v1[i] << std::endl;
-                std::cout << "v2[i]: " << v2[i] << std::endl;
+                // std::cout << "result: " << result << std::endl;
+                // std::cout << "v1[i]: " << v1[i] << std::endl;
+                // std::cout << "v2[i]: " << v2[i] << std::endl;
                 result += v1[i] * v2[i];  // No need to use .coords since assignment operator has already been defined.
             }
-            std::cout << "result: " << result << std::endl;
+            // std::cout << "result: " << result << std::endl;
             return result;
         }
     }
@@ -287,5 +317,7 @@ namespace cga {
     float crossProduct2D(Vector2f v1, Vector2f v2);
 
     Vector3f crossProduct3D(Vector3f v1, Vector3f v2);
+
+    float scalarTripleProduct(Vector3f v1, Vector3f v2, Vector3f v3);
 }
 

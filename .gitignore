@@ -1,0 +1,8 @@
+./tests/_deps
+./tests/bin
+./tests/build
+./tests/CMakeFiles
+./tests/lib
+./tests/Testing
+*.make
+*.internal
