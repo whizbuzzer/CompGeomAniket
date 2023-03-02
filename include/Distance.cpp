@@ -61,7 +61,7 @@ float cga::distance(Point3D& point, Point3D& seg_start, Point3D& seg_end) {
 // Could be negative OR positive depending on which side of the plane
 // the point lies on.
 float cga::distance(Planef& plane, Point3D& point) {
-    auto _distance = dotProduct(plane.getNormal(), point) - plane.getd();
+    auto _distance = dotProduct(plane.getNormal(), point) - plane.getD();
 
     return _distance;
 }

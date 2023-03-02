@@ -1,7 +1,7 @@
 #pragma once
 
 // Using Vector class to define point since a point is also a positional vector
-#include "./Vector.h"
+#include "Vector.h"
 
 namespace cga {
     

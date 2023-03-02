@@ -64,7 +64,7 @@ namespace cga {
             return normal;
         }
 
-        float getd() const {
+        float getD() const {
             return d;
         }
     };
