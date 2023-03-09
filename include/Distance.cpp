@@ -49,7 +49,7 @@ float cga::distance(Point3D& point, Point3D& seg_start, Point3D& seg_end) {
 
     // auto AB = seg_start - point;  // direction vector of the line
     // auto CA = point - seg_end;
-    // Vector3f cross = crossProduct3D(CA, AB);
+    // Vector3D cross = crossProduct3D(CA, AB);
     
     // float cross_mag = cross.magnitude();
     // float dir_mag = AB.magnitude();

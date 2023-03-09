@@ -8,22 +8,22 @@ namespace cga {
     template<typename coordinate_type>  // dimensions not needed since planes are always 3D
     class Plane {
         // Normal-point form ( n . X = d )
-        Vector3f normal;
+        Vector3D normal;
         float d = 0;  // Ax + By + Cz = D
 
     public:
         Plane() {}
 
-        Plane(Vector3f& _normal):normal(_normal) {
+        Plane(Vector3D& _normal):normal(_normal) {
             normal.normalize();
         }
 
         // Make sure to calculate _d using normalized normal
-        Plane(Vector3f& _normal, float& _d):normal(_normal), d(_d) {
+        Plane(Vector3D& _normal, float& _d):normal(_normal), d(_d) {
             normal.normalize();
         }
 
-        Plane(Vector3f& _normal, Vector3f& p):normal(_normal) {
+        Plane(Vector3D& _normal, Vector3D& p):normal(_normal) {
             normal.normalize();  // For faster calculations
             d = dotProduct(normal, p);
         }
@@ -60,7 +60,7 @@ namespace cga {
             return !(*this != _other);
         }
 
-        Vector3f getNormal() const {
+        Vector3D getNormal() const {
             return normal;
         }
 

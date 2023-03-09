@@ -25,9 +25,15 @@ namespace cga {
      */
     template<typename coordinate_type, size_t dimensions> class Vector;
 
-    // Forward declaration so that friend declaration could be used
+    /* Forward declarations so that friend declarations could be used: */
+    // Cross product:
     template<typename coordinate_type, size_t dimensions>
-    float dotProduct(const Vector<coordinate_type, dimensions>&, const Vector<coordinate_type, dimensions>&);
+    Vector<coordinate_type, dimensions> crossProduct(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2);
+
+    // Dot product:
+    template<typename coordinate_type, size_t dimensions>
+    float dotProduct(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2);
+
 
     template<typename coordinate_type, size_t dimensions>
     class Vector {
@@ -38,9 +44,6 @@ namespace cga {
 
         // For storing the components:
         std::array<coordinate_type, dimensions> coords = {};
-
-        // Dot product of two vectors
-        friend float dotProduct<coordinate_type, dimensions>(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2);
 
     public:
         Vector() {}  // Default constructor
@@ -95,10 +98,13 @@ namespace cga {
         // size_t size();
 
         // Assign method for modifying an already defined vector
-        void assign(const unsigned int dimension, coordinate_type value);
+        void assign(unsigned int dimension, coordinate_type value);
 
-        // Cross product of two vectors
-        Vector<coordinate_type, dimensions> crossProduct(const Vector<coordinate_type, dimensions>&, const Vector<coordinate_type, dimensions>&);
+        // Cross product:
+        friend Vector crossProduct<coordinate_type, dimensions>(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2);
+
+        // Dot product:
+        friend float dotProduct<coordinate_type, dimensions>(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2);
 
         // Magnitude of a vector
         float magnitude() const;
@@ -181,7 +187,7 @@ namespace cga {
         return Vector<coordinate_type, dimensions>(result);
     }
 
-    // Multiples vector with scalar
+    // Multiplies vector with scalar
     template<typename coordinate_type, size_t dimensions>
     inline Vector<coordinate_type, dimensions> Vector<coordinate_type, dimensions>::operator * (coordinate_type scale) const {
         std::array<coordinate_type, dimensions> result;
@@ -237,32 +243,16 @@ namespace cga {
 
     // Assigns given value at a given index in the vector
     template<typename coordinate_type, size_t dimensions>
-    inline void Vector<coordinate_type, dimensions>::assign(const unsigned int dimension, coordinate_type value) {
+    inline void Vector<coordinate_type, dimensions>::assign(unsigned int dimension, coordinate_type value) {
         if (dimension >= coords.size()) {
             std::cout << "Dimension is out of bound" << std::endl;
         }
 
-        coords[dimension] = value;
-    }
-
-    // Dot product of two vectors
-    template<typename coordinate_type, size_t dimensions>
-    float dotProduct(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2) {
-        if (v1.coords.size() != v2.coords.size()) {
-            std::cout << "Vectors are not of the same size/dimension. Vectors must be of same size for dot product" << std::endl;
-            return FLT_MIN;  // from <cfloat>
-        } else {
-            // Vector<coordinate_type, dimensions> resultVector = v1 * v2;
-            float result = 0;
-            for (size_t i = 0; i < v1.coords.size(); i++) {
-                // std::cout << "result: " << result << std::endl;
-                // std::cout << "v1[i]: " << v1[i] << std::endl;
-                // std::cout << "v2[i]: " << v2[i] << std::endl;
-                result += v1[i] * v2[i];  // No need to use .coords since assignment operator has already been defined.
-            }
-            // std::cout << "result: " << result << std::endl;
-            return result;
+        else if (dimension < 0) {
+            dimension = coords.size() + dimension;
         }
+
+        coords[dimension] = value;
     }
 
     // Cross product of two vectors
@@ -284,6 +274,26 @@ namespace cga {
             _z = (v1[X] * v2[Y]) - (v1[Y] * v2[X]);
 
             return Vector<coordinate_type, dimensions>(_x, _y, _z);
+        }
+    }
+
+    // Dot product of two vectors
+    template<typename coordinate_type, size_t dimensions>
+    inline float dotProduct(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2) {
+        if (v1.coords.size() != v2.coords.size()) {
+            std::cout << "Vectors are not of the same size/dimension. Vectors must be of same size for dot product" << std::endl;
+            return FLT_MIN;  // from <cfloat>
+        } else {
+            // Vector<coordinate_type, dimensions> resultVector = v1 * v2;
+            float result = 0;
+            for (size_t i = 0; i < v1.coords.size(); i++) {
+                // std::cout << "result: " << result << std::endl;
+                // std::cout << "v1[i]: " << v1[i] << std::endl;
+                // std::cout << "v2[i]: " << v2[i] << std::endl;
+                result += v1[i] * v2[i];  // No need to use .coords since assignment operator has already been defined.
+            }
+            // std::cout << "result: " << result << std::endl;
+            return result;
         }
     }
 
@@ -311,13 +321,14 @@ namespace cga {
     }
 
     // Aliases for certain specialised functions
-    typedef Vector<float, DIM2>     Vector2f;
-    typedef Vector<float, DIM3>     Vector3f;
+    typedef Vector<float, DIM2>     Vector2D;
+    typedef Vector<float, DIM3>     Vector3D;
     
-    float crossProduct2D(Vector2f v1, Vector2f v2);
+    // Defined in Vector.cpp:
+    float crossProduct2D(Vector2D v1, Vector2D v2);
 
-    Vector3f crossProduct3D(Vector3f v1, Vector3f v2);
+    Vector3D crossProduct3D(Vector3D v1, Vector3D v2);
 
-    float scalarTripleProduct(Vector3f v1, Vector3f v2, Vector3f v3);
+    float scalarTripleProduct(Vector3D v1, Vector3D v2, Vector3D v3);
 }
 

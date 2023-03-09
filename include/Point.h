@@ -5,6 +5,6 @@
 
 namespace cga {
     
-    typedef Vector2f Point2D;
-    typedef Vector3f Point3D;
+    typedef Vector2D Point2D;
+    typedef Vector3D Point3D;
 }

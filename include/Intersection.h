@@ -6,13 +6,13 @@
 
 namespace cga {
     
-    // For 4 points, 2 points/line
+    // For 4 points (2 points/line)
     bool intersection(const Point2D&,
                       const Point2D&,
                       const Point2D&,
                       const Point2D&);
 
-    // For 5 points, 2 points/line + intersection point
+    // For 5 points (2 points/line + intersection point)
     bool intersection(const Point2D&,
                       const Point2D&,
                       const Point2D&,
@@ -28,4 +28,9 @@ namespace cga {
     bool intersection(const Planef&,
                       const Line3D&,
                       Point3D&);
+
+    // 2 planes and 1 line
+    bool intersection(const Planef&,
+                      Planef&,
+                      Line3D&);
 }

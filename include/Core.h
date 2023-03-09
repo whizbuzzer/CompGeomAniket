@@ -7,6 +7,8 @@ namespace cga {
 
     #define TOLERANCE 0.0001  // For performing an operation till the 7th decimal
 
+    // Use enum when a variable can have a value only from a certain set of
+    // values, e.g. DIRECTION (4-8 fixed values) or COLOR (set no. of values)
     enum RELATIVE_POSITION {
         LEFT, RIGHT, BEHIND, BEYOND, BETWEEN, ORIGIN, DESTINATION
     };

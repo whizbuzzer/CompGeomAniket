@@ -41,7 +41,11 @@ namespace cga {
                       const Point2D& line_end2) {
         auto area = areaTriangle2D(target, line_end1, line_end2);
 
-        if ((area > 0 && area < TOLERANCE) || (area < 0 && area > TOLERANCE)) {
+        // if ((area > 0 && area < TOLERANCE) || (area < 0 && area > TOLERANCE)) {
+        //     area = 0;
+        // }
+
+        if (area != 0 && fabs(area) < TOLERANCE) {
             area = 0;
         }
 
@@ -54,8 +58,8 @@ namespace cga {
         }
 
         // For when the line and point are colinear
-        Vector2f v1 = line_end2 - line_end1;
-        Vector2f v2 = target - line_end1;
+        Vector2D v1 = line_end2 - line_end1;
+        Vector2D v2 = target - line_end1;
 
         if ((v1[X] * v2[X] < 0) || (v1[Y] * v2[Y] > 0)) {
             return BEHIND;
@@ -79,8 +83,8 @@ namespace cga {
 
     /* Collinearity methods */
     // Checks if two vectors/3 points are collinear
-    bool isCollinear2D(const Vector2f& v1,
-                       const Vector2f& v2) {
+    bool isCollinear2D(const Vector2D& v1,
+                       const Vector2D& v2) {
         auto k = (v1[X] * v2[Y]) - (v1[Y] * v2[X]);
         return isEqualD(ZERO, k);
     }
@@ -94,8 +98,8 @@ namespace cga {
         return isCollinear2D(ab, ac);
     }
 
-    bool isCollinear3D(const Vector3f& v1,
-                       const Vector3f& v2) {
+    bool isCollinear3D(const Vector3D& v1,
+                       const Vector3D& v2) {
         auto k1 = (v1[X] * v2[Y]) - (v1[Y] * v2[X]);
         auto k2 = (v1[Y] * v2[Z]) - (v1[Z] * v2[Y]);
         auto k3 = (v1[Z] * v2[X]) - (v1[X] * v2[Z]);
@@ -115,9 +119,9 @@ namespace cga {
 
     /* Coplanarity methods */
     // Checks if 3 vectors/4 points are collinear
-    bool isCoplanar(const Vector3f& v1,
-                    const Vector3f& v2,
-                    const Vector3f& v3) {
+    bool isCoplanar(const Vector3D& v1,
+                    const Vector3D& v2,
+                    const Vector3D& v3) {
         float value = scalarTripleProduct(v1, v2, v3);
         return isEqualD(ZERO, value);
     }

@@ -13,8 +13,8 @@
 
 namespace cga {
     // Both 2D and 3D lines share this part of the calculation:
-    template<typename T, size_t dimensions>
-    static float getAngle(cga::Vector<T, dimensions> v1, cga::Vector<T, dimensions> v2) {
+    template<typename coordinate_type, size_t dimensions>
+    static float getAngle(cga::Vector<coordinate_type, dimensions> v1, cga::Vector<coordinate_type, dimensions> v2) {
         // auto l1_mag = l1.getDirection().magnitude();
         // auto l2_mag = l2.getDirection().magnitude();
 
@@ -29,12 +29,10 @@ namespace cga {
         return radians2Degrees(angle);
     }
 
-
     // Finding angle between 2 2D lines
     float angleLines2D(const Line2D& l1, const Line2D& l2) {
         return getAngle(l1.getDirection(), l2.getDirection());
     }
-
 
     // Finding angle between 2 3D lines
     float angleLines3D(const Line3D& l1, const Line3D& l2) {

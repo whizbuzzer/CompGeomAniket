@@ -1,7 +1,7 @@
 #include "Line.h"
 
 namespace cga {
-    Vector3f Line3D::getDirection() const {
+    Vector3D Line3D::getDirection() const {
         return direction;
     }
 
@@ -9,16 +9,42 @@ namespace cga {
         return point;
     }
 
-    Vector2f Line2D::getDirection() const {
+    void Line3D::setDirection(Vector3D& d) {
+        direction.assign(X, d[X]);
+        direction.assign(Y, d[Y]);
+        direction.assign(Z, d[Z]);
+    }
+
+    void Line3D::setPoint(Point3D& p) {
+        point.assign(X, p[X]);
+        point.assign(Y, p[Y]);
+        point.assign(Z, p[Z]);
+    }
+
+    Vector2D Line2D::getDirection() const {
         return direction;
+    }
+
+    Vector2D Line2D::getNormalVector() const {
+        return normal_vec;
     }
 
     Point2D Line2D::getPoint() const {
         return point;
     }
 
-    Vector2f Line2D::getNormalVector() const {
-        return normal_vec;
+    void Line2D::setDirection(Vector2D& d) {
+        direction.assign(X, d[X]);
+        direction.assign(Y, d[Y]);
     }
 
+    void Line2D::setNormalVector(Vector2D& n) {
+        normal_vec.assign(X, n[X]);
+        normal_vec.assign(Y, n[Y]);
+    }
+
+    void Line2D::setPoint(Point2D& p) {
+        point.assign(X, p[X]);
+        point.assign(Y, p[Y]);
+    }
 }

@@ -19,6 +19,7 @@
     ```
     g++ dummy.cpp whatevs.cpp
     ```
+    But this won't be necessary with proper cmaking
 
 
 ## \#pragma once directive
@@ -45,6 +46,32 @@
 ## Forward declarations
     > Use forward declarations of methods/classes (declare them first and define 
 them later) in order to properly implement them as "friend"
+    > Steps to properly define a friend template function:
+        1. Declare the template class that the future-friend function would take as input/give as output
+        2. Declare the template function inside the class with prefix "friend"
+        3. During this declaration, state the custom datatype arguments of the method inside <>
+        4. Define the friend template function properly after the class.
+        > The whole thing will look as follows:
+        ```
+        template<typename T, size_t size> class Menace;
+
+        template<typename T, size_t size>
+        Menace<T, size> enrage(Menace<T, size>& dennis);
+
+        template<typename T, size_t size>
+        class Menace {
+            int chaos = 69;
+        public:
+            Menace() {}
+
+            friend Menace enrage<T, size>(Menace<T, size>& dennis);
+        };
+
+        template<typename T, size_t size>
+        Menace<T, size> enrage(Menace<T, size>& dennis) {
+            ...
+        };
+        ```
 
 
 ## GoogleTest stuff
