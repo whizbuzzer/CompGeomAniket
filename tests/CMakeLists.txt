@@ -36,7 +36,7 @@ add_executable(
 
 target_include_directories(
     cga_tests PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include
+    ${INCLUDE_DIRECTORIES}
 )
 
 target_link_libraries(
