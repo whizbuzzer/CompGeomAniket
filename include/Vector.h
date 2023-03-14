@@ -13,13 +13,6 @@
 
 namespace cga {
 
-    #define DIM2 2
-    #define DIM3 3
-
-    #define X 0
-    #define Y 1
-    #define Z 2
-
     /* Using templates instead of inheritance for compile-time polymorphism
      * IT'S FASTER!
      */
@@ -128,7 +121,7 @@ namespace cga {
     template<typename coordinate_type, size_t dimensions>
     inline bool Vector<coordinate_type, dimensions>::operator == (const Vector<coordinate_type, dimensions>& _other) const {
         for (size_t i = 0; i < dimensions; i++) {
-            if(isEqualD(coords[i], _other.coords[i]))
+            if (isEqualD(coords[i], _other.coords[i]))
             return false;
         }
         return true;

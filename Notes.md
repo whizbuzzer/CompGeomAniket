@@ -45,7 +45,7 @@
 
 ## Forward declarations
     > Use forward declarations of methods/classes (declare them first and define 
-them later) in order to properly implement them as "friend"
+    them later) in order to properly implement them as "friend"
     > Steps to properly define a friend template function:
         1. Declare the template class that the future-friend function would take as input/give as output
         2. Declare the template function inside the class with prefix "friend"
@@ -53,11 +53,14 @@ them later) in order to properly implement them as "friend"
         4. Define the friend template function properly after the class.
         > The whole thing will look as follows:
         ```
+        // template class initialization so that it could be used by future-friend template method:
         template<typename T, size_t size> class Menace;
 
+        // future-friend template method initialization:
         template<typename T, size_t size>
         Menace<T, size> enrage(Menace<T, size>& dennis);
 
+        // Specifying template method as friend inside class definition:
         template<typename T, size_t size>
         class Menace {
             int chaos = 69;
@@ -67,6 +70,7 @@ them later) in order to properly implement them as "friend"
             friend Menace enrage<T, size>(Menace<T, size>& dennis);
         };
 
+        // friend template method definition:
         template<typename T, size_t size>
         Menace<T, size> enrage(Menace<T, size>& dennis) {
             ...
@@ -93,12 +97,21 @@ them later) in order to properly implement them as "friend"
 
 
 ## CMake stuff for unit testing
+    https://cmake.org/cmake/help/latest/manual/cmake.1.html
     ```
-    # If you arent already in the folder with CMakeLists.txt:
+    # If you aren't already in the folder with CMakeLists.txt:
     cd <path_to_CMakeListsdottxt>
+
+    # -S flag is followed by source path and -B is followed by build path.
+    # This command generates a project build-system:
     cmake -S . -B build
+
+    # This will build the binaries into the build folder:
     cmake --build build
     cd build && ctest
+
+    DELETE PREVIOUS CONTENTS OF THE BUILD FOLDER TO CLEAR PREVIOUS CACHE IF YOU ARE 
+    BUILDING WITH A NEW CMAKELISTS.TXT
     ```
 
 
@@ -126,3 +139,5 @@ them later) in order to properly implement them as "friend"
 ## Geogebra is a good tool for visualization purposes
 https://www.geogebra.org/
 
+## Doubly Connected Edge List (DCEL)
+[This a popular data structure for working with polygons](https://en.wikipedia.org/wiki/Doubly_connected_edge_list)

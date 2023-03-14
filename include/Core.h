@@ -1,9 +1,16 @@
-/* For the most basic operations that we would need in our library: */
+/* For the most basic operations and aliases that we would need in our library: */
 #pragma once
 
 #include <math.h>
 
 namespace cga {
+
+    #define DIM2 2
+    #define DIM3 3
+
+    #define X 0
+    #define Y 1
+    #define Z 2
 
     #define TOLERANCE 0.0001  // For performing an operation till the 7th decimal
 
