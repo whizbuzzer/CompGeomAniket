@@ -94,10 +94,10 @@ namespace cga {
         void assign(unsigned int dimension, coordinate_type value);
 
         // Cross product:
-        friend Vector crossProduct<coordinate_type, dimensions>(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2);
+        friend Vector crossProduct<coordinate_type, dimensions>(const Vector<coordinate_type, dimensions>&, const Vector<coordinate_type, dimensions>&);
 
         // Dot product:
-        friend float dotProduct<coordinate_type, dimensions>(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2);
+        friend float dotProduct<coordinate_type, dimensions>(const Vector<coordinate_type, dimensions>&, const Vector<coordinate_type, dimensions>&);
 
         // Magnitude of a vector
         float magnitude() const;

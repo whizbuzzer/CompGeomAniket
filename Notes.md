@@ -97,7 +97,7 @@
 
 
 ## CMake stuff for unit testing
-    https://cmake.org/cmake/help/latest/manual/cmake.1.html
+[Read this](https://cmake.org/cmake/help/latest/manual/cmake.1.html)
     ```
     # If you aren't already in the folder with CMakeLists.txt:
     cd <path_to_CMakeListsdottxt>
@@ -109,23 +109,23 @@
     # This will build the binaries into the build folder:
     cmake --build build
     cd build && ctest
-
-    DELETE PREVIOUS CONTENTS OF THE BUILD FOLDER TO CLEAR PREVIOUS CACHE IF YOU ARE 
-    BUILDING WITH A NEW CMAKELISTS.TXT
     ```
+DELETE PREVIOUS CONTENTS OF THE BUILD FOLDER TO CLEAR PREVIOUS CACHE IF YOU ARE 
+BUILDING WITH A NEW CMAKELISTS.TXT
+ 
 
 
 ## Ctest stuff
-    In case the test fails and you wanna see what went wrong,
+In case the test fails and you wanna see what went wrong,
     ```
     ctest -R alkimia-alkinvoice
     ```
-    will make only the failing test run, and
+will make only the failing test run, and
     ```
     ctest -R alkimia-alkinvoice -VV
     ```
-    will make only the failing test run as well as display its output.
-    [Source](https://stackoverflow.com/questions/6931143/how-to-find-where-the-error-is-while-running-ctest)
+will make only the failing test run as well as display its output.
+[Source](https://stackoverflow.com/questions/6931143/how-to-find-where-the-error-is-while-running-ctest)
 
     
 ## 21/10/2022

@@ -11,6 +11,9 @@
 #include "Vector.h"
 
 namespace cga {
+    // Forward declaration for friend declaration:
+    template<typename T, size_t dim> class Polygon;
+
     // Basic component of a polygon. We are going to construct the polygon
     // by going through vertices in a counter-clockwise order. It will function
     // like a "Node" in a Doubly Linked-List/Bi-directional Graph:
@@ -20,10 +23,18 @@ namespace cga {
         Vertex* prev = nullptr;
         Vertex* next = nullptr;
 
+        // if (dim == DIM2) {
+        //     int id = 0;
+        // } else if (dim == DIM3) {
+        //     bool isEar = false;
+        //     bool isProcessed = false;
+        // }
+    public:
         // Constructor:
         Vertex(Vertex<T, dim>& _point,
             Vertex<T, dim>* _prev,
             Vertex<T, dim>* _next): point(_point), prev(_prev), next(_next) {}
+        friend class Polygon<T, dim>;
     };
 
     typedef Vertex<float, DIM2>     Vertex2D;
@@ -31,12 +42,14 @@ namespace cga {
 
 
     // Polygon class:
-    template<typename T, size_t dim>  // Could also be DIM2
+    template<typename T, size_t dim>
     class Polygon {
         // Normally would need to store ALL component vertices, but each vertex
         // already has a pointer to both its neighbors, so vertex storage
         // is not necessary. But we will still keep the vertex list so that we
-        // could reset the polygon in case the vertex pointers (prev/next) change:
+        // could reset the polygon in case the vertex pointers (prev/next) change.
+        // Also using heap memory (pointers) as it is larger than stack memory
+        // and so stack overflow can be avoided:
         std::vector<Vertex<T, dim>*> vertex_list;
     public:
         // Constructor:
@@ -67,17 +80,15 @@ namespace cga {
 
                 vertex_list[i].next = &vertex_list[(i + 1) % size];
 
-                if (i != 0) {
-                    vertex_list[i].prev = vertex_list[i - 1];
-                } else {
+                if (i == 0) {
                     vertex_list[i].prev = vertex_list[size - 1];
+                } else {
+                    vertex_list[i].prev = vertex_list[i - 1];
                 }
             }
         };
-
-        std::vector<Vertex<T, dim>>*> getVertices() {
-            return vertex_list;
-        }
+        
+        std::vector<Vertex<T, dim>*> getVertices();
     };
 
     typedef Polygon<float, DIM2>    Polygon2D;

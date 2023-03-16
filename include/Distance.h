@@ -1,8 +1,3 @@
-#include "Point.h"
-#include "Line.h"
-#include "Plane.h"
-
-
 /* Distance methods */
     // Normally, distance between two points can be calculated as:
     // sqrt((x1 - x2)^2 + (y1 - y2)^2)                    (2D) or
@@ -12,6 +7,13 @@
     // 1. If v is a normalized equation, then mod(v)^2 = 1
     // 2. t1 = v . (Y - a)
     // 3. Find (Y - X(t)) and get its magnitude
+
+#pragma once
+
+#include "Line.h"
+#include "Plane.h"
+#include "Point.h"
+
 
 namespace cga {
     // Distance calculation between 2 2D lines
