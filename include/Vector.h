@@ -38,6 +38,8 @@ namespace cga {
         // For storing the components:
         std::array<coordinate_type, dimensions> coords = {};
 
+        typedef Vector<float, dimensions>     VectorND;
+
     public:
         Vector() {}  // Default constructor
 
