@@ -25,7 +25,7 @@ namespace cga {
         return fabs(x - y) < TOLERANCE;  // fabs() returns absolute value of an argument
     }
 
-    static bool _xor(bool x, bool y) {
+    static bool exOr(bool x, bool y) {
         return x ^ y;
     }
 

@@ -4,10 +4,10 @@
 float cga::distance(Line2D& line, Point2D& point) {
     /* t1 = v . (Y - a) */
     // Difference vector
-    auto AC = point - line.getPoint();
-    auto t1 = dotProduct(line.getDirection(), AC);
+    auto AC = point - line.get_point();
+    auto t1 = dotProduct(line.get_direction(), AC);
 
-    auto xt = line.getPoint() - (line.getDirection() * t1);
+    auto xt = line.get_point() - (line.get_direction() * t1);
     auto dist_vec = xt - point;
 
     return dist_vec.magnitude();
@@ -30,10 +30,10 @@ float cga::distance(Point2D& point, Point2D& seg_start, Point2D& seg_end) {
 float cga::distance(Line3D& line, Point3D& point) {
     /* t1 = v . (Y - a) */
     // Difference vector
-    auto AC = point - line.getPoint();
-    auto t1 = dotProduct(line.getDirection(), AC);
+    auto AC = point - line.get_point();
+    auto t1 = dotProduct(line.get_direction(), AC);
 
-    auto xt = line.getPoint() - (line.getDirection() * t1);
+    auto xt = line.get_point() - (line.get_direction() * t1);
     auto dist_vec = xt - point;
 
     return dist_vec.magnitude();
@@ -61,7 +61,7 @@ float cga::distance(Point3D& point, Point3D& seg_start, Point3D& seg_end) {
 // Could be negative OR positive depending on which side of the plane
 // the point lies on.
 float cga::distance(Planef& plane, Point3D& point) {
-    auto _distance = dotProduct(plane.getNormal(), point) - plane.getD();
+    auto _distance = dotProduct(plane.get_normal(), point) - plane.get_d();
 
     return _distance;
 }

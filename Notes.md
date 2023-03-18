@@ -21,6 +21,8 @@
     ```
     But this won't be necessary with proper cmaking
 
+[Follow this style convention](https://google.github.io/styleguide/cppguide.html)
+
 
 ## \#pragma once directive
     > "#pragma once" is a preprocessor directive which instructs the compiler 
@@ -41,6 +43,8 @@
 
 
 ## Template classes need their methods declared as "inline"
+# Template methods must be defined in the header file itself
+[Reference](https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl)
 
 
 ## Forward declarations

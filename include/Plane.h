@@ -60,11 +60,11 @@ namespace cga {
             return !(*this != _other);
         }
 
-        Vector3D getNormal() const {
+        Vector3D get_normal() const {
             return normal;
         }
 
-        float getD() const {
+        float get_d() const {
             return d;
         }
     };

@@ -23,7 +23,7 @@ namespace cga {
             return true;
         }
 
-        return cga::_xor(l1_l2p1 == LEFT, l1_l2p2 == LEFT) && cga::_xor(l2_l1p1 == LEFT, l2_l1p2 == LEFT);
+        return cga::exOr(l1_l2p1 == LEFT, l1_l2p2 == LEFT) && cga::exOr(l2_l1p1 == LEFT, l2_l1p2 == LEFT);
     }
 
     // For 5 points, 2 points/line + intersection point
@@ -62,11 +62,11 @@ namespace cga {
     bool intersection(const cga::Line2D& l1,
                       const cga::Line2D& l2,
                       cga::Point2D& _intersection) {
-        auto l1_start = l1.getPoint();
-        auto l1_end = l1_start + l1.getDirection();
+        auto l1_start = l1.get_point();
+        auto l1_end = l1_start + l1.get_direction();
 
-        auto l2_start = l2.getPoint();
-        auto l2_end = l2_start + l2.getDirection();
+        auto l2_start = l2.get_point();
+        auto l2_end = l2_start + l2.get_direction();
 
         return intersection(l1_start, l1_end, l2_start, l2_end, _intersection);
     }
@@ -75,15 +75,15 @@ namespace cga {
     bool intersection(const Planef& plane,
                       const Line3D& line,
                       Point3D& _intersection) {
-        auto n = plane.getNormal();
-        auto d = line.getDirection();
+        auto n = plane.get_normal();
+        auto d = line.get_direction();
 
         // Check if line is parallel to plane:
         auto denom = dotProduct(n, d);
 
         if (!isEqualD(denom, ZERO)) {
-            auto D = plane.getD();        
-            auto p = line.getPoint();
+            auto D = plane.get_d();        
+            auto p = line.get_point();
             auto t1 = (-1 * dotProduct(n, p) + D) / denom;
 
             // assign t1 to line to get intersection point:
@@ -99,15 +99,15 @@ namespace cga {
     bool intersection(const Planef& p1,
                       Planef& p2,
                       Line3D& _intersection) {
-        auto n1 = p1.getNormal();
-        auto n2 = p2.getNormal();
+        auto n1 = p1.get_normal();
+        auto n2 = p2.get_normal();
 
         // Check if p1 and p2 are parellel to each other:
         auto direction = crossProduct3D(n1, n2);  // Direction vector of intersecting line
 
         if (!isEqualD(direction.magnitude(), ZERO)) {
-            auto d1 = p1.getD();
-            auto d2 = p2.getD();
+            auto d1 = p1.get_d();
+            auto d2 = p2.get_d();
 
             // We are storing the normal vectors normalized
             // Hence, their magnitude would be 1
@@ -119,9 +119,9 @@ namespace cga {
             auto b = ((d1 * n1n2) - d2) / (n1n2_2 -1);
 
             auto point = (n1 * a) - (n2 * b);
-            _intersection.setPoint(point);
+            _intersection.set_point(point);
             direction.normalize();
-            _intersection.setDirection(direction);
+            _intersection.set_direction(direction);
             return true;
         } else {
             return false;

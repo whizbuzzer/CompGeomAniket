@@ -28,14 +28,14 @@ namespace cga {
         }
 
         // Getters
-        Vector2D getDirection() const;
-        Vector2D getNormalVector() const;
-        Point2D getPoint() const;
+        Vector2D get_direction() const;
+        Vector2D get_normal_vector() const;
+        Point2D get_point() const;
 
         // Setters
-        void setDirection(Vector2D&);
-        void setNormalVector(Vector2D&);
-        void setPoint(Point2D&);
+        void set_direction(Vector2D&);
+        void set_normal_vector(Vector2D&);
+        void set_point(Point2D&);
     };
     
     class Line3D {
@@ -61,11 +61,11 @@ namespace cga {
         // }
 
         // Getters
-        Vector3D getDirection() const;
-        Point3D getPoint() const;
+        Vector3D get_direction() const;
+        Point3D get_point() const;
 
         // Setters
-        void setDirection(Vector3D&);
-        void setPoint(Point3D&);
+        void set_direction(Vector3D&);
+        void set_point(Point3D&);
     };
 }

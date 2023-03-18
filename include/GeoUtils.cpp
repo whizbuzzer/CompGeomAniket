@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "Angle.h"
 #include "GeoUtils.h"
 #include "Intersection.h"
 
@@ -145,9 +146,9 @@ namespace cga {
     }
 
     bool left(const Line2D& line, const Point2D& target) {
-        auto line_normal = line.getNormalVector();
+        auto line_normal = line.get_normal_vector();
         auto value1 = dotProduct(line_normal, target);
-        auto value2 = dotProduct(line_normal, line.getPoint());
+        auto value2 = dotProduct(line_normal, line.get_point());
         return (value1 - value2) < 0 ? false : true;
     }
 
@@ -238,6 +239,7 @@ namespace cga {
         return isCoplanar(v1, v2, v3);
     }
 
+
     /* Interior checks to check if a line is inside the polygon or not */
     // Vertices would be scanned in a counter-clockwise direction in this project
     static bool insidePolygon(const Vertex2D* v1, const Vertex2D* v2) {
@@ -251,6 +253,7 @@ namespace cga {
         return !(left(v1->point, v2->point, v1->next->point)
             && left(v2->point, v1->point, v1->prev->point));
     }
+
 
     /* Diagonal checking methods */
     // Vertices would be scanned in a counter-clockwise direction in this project
@@ -266,13 +269,13 @@ namespace cga {
 
         // Based on whether polygon pointer is defined or not, we will record ALL vertices:
         if(poly) {
-            vertices = poly->getVertices();
+            vertices = poly->get_vertices();
         } else {
             vertices.push_back((Vertex2D*)v1);  // Ensuring correct datatype is inserted
-            auto vertex_ptr = v1 -> next;  // For populating vertices vector
+            auto vertex_ptr = v1->next;  // For populating vertices vector
             while (vertex_ptr != v1) {
                 vertices.push_back(vertex_ptr);
-                vertex_ptr = vertex_ptr -> next;
+                vertex_ptr = vertex_ptr->next;
             }
         }
 
@@ -281,7 +284,7 @@ namespace cga {
 
         // Execute statement first, then check the condition:
         do {
-            next = current -> next;
+            next = current->next;
             // Ensuring that current and next are not neighbors and that an intersction doesn't occur:
             if (current != v1 && next != v1 && current != v2 && next != v2
                 && intersection(v1->point, v2->point, current->point, next->point)) {
@@ -292,5 +295,11 @@ namespace cga {
         } while (current != vertices[0]);  // Till all points have been covered
 
         return (possibleDiagonal && insidePolygon(v1, v2) && insidePolygon(v2, v1));
+    }
+
+
+    /* Convex angle check (checking whether interior angle < 180 degrees) */
+    bool isConvex(const Vertex2D* v0, const Vertex2D* v1, const Vertex2D* v2) {
+        return (getAngle(*v0, *v1, *v2) < 180);
     }
 }

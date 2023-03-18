@@ -28,10 +28,10 @@ int main() {
 
     // Defining lines using above points and directions
     cga::Line3D l1(l1P1, l1P2);
-    for (int i=0; i < 3; i++) {std::cout << l1.getDirection()[i] << std::endl;}
-    // std::cout << l1.getDirection().magnitude() << std::endl;
+    for (int i=0; i < 3; i++) {std::cout << l1.get_direction()[i] << std::endl;}
+    // std::cout << l1.get_direction().magnitude() << std::endl;
     cga::Line3D l2(l2P1, l2P2);
-    // std::cout << l2.getDirection().magnitude() << std::endl;
+    // std::cout << l2.get_direction().magnitude() << std::endl;
 
     auto angle = cga::angleLines3D(l1, l2);
     std::cout << "the angle is: " << angle << std::endl;

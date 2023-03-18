@@ -86,6 +86,7 @@ namespace cga {
     /* Interior checks to check if a line is inside the polygon or not */
     static bool insidePolygon(Vertex2D* v1, Vertex2D* v2);
 
+
     /* Diagonal checking methods */
     // Vertices would be scanned in a counter-clockwise direction in this project
     // Checks if a line is a diagonal based on 3 conditions:
@@ -95,5 +96,9 @@ namespace cga {
     // 3. Start vertex is a concave vertex (inner angle > 180 degrees) and
     // line extending from it lies inside the polygon only.
     bool isDiagonal(const Vertex2D* v1, const Vertex2D* v2, Polygon2D* poly=nullptr);
+
+
+    /* Convex angle check (checking whether interior angle < 180 degrees) */
+    bool isConvex(const Vertex2D* v0, const Vertex2D* v1, const Vertex2D* v2);
 
 }
