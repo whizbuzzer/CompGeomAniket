@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Angle.h"
 #include "Core.h"
 #include "Vector.h"

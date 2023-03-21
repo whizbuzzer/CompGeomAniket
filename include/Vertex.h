@@ -1,7 +1,6 @@
 /* Vertex structure definition */
 #pragma once
 
-#include "Edge.h"
 #include "Polygon.h"
 
 
@@ -34,21 +33,4 @@ namespace cga {
 
     typedef Vertex<float, DIM2>     Vertex2D;
     typedef Vertex<float, DIM3>     Vertex3D;
-
-    // For DCEL ear-clipping triangulation implementation:
-    template<typename T=float, size_t dim>
-    struct VertexDCEL {
-        Vector<float, dim> point;             // Vertex coordinates
-        EdgeDCEL<float, dim> *incident_edge = nullptr;  // Edge starting from this vertex
-
-        // Constructor:
-        VertexDCEL(Vector<T, dim>& point_): point(point_) {}
-
-        void print_point() {
-            std::cout << "(" << point[X] << point[Y];
-            if (dim == DIM3)
-                std::cout << point[Z];
-            std::cout << ")" << std::endl;
-        }
-    }
 }

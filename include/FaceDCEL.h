@@ -12,8 +12,10 @@ namespace cga {
     // Face can also have holes and need not be completely filled.
     template<typename T, size_t dim>
     struct FaceDCEL {
-        EdgeDCEL<T, dim>* outer = nullptr;  // Pointer to one of CCW edges of polygon
-        std::vector<EdgeDCEL<T, dim>*> hole_edges;  // Pointer to list of hole-edges
+        // Pointer to one of CCW outer half-edges of polygon
+        EdgeDCEL<T, dim>* outer = nullptr;
+        // Pointer to CW inner half-edges which represent holes
+        std::vector<EdgeDCEL<T, dim>*> inner;
 
         //Constructor:
         FaceDCEL() {}
