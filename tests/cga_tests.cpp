@@ -3,8 +3,10 @@
 
 #include "Angle.h"
 #include "Core.h"
-#include "Vector.h"
 #include "GeoUtils.h"
+#include "Point.h"
+#include "Vector.h"
+
 
 /*
  * Reference: https://google.github.io/googletest/quickstart-cmake.html
@@ -111,6 +113,21 @@ TEST(AreaTest, AreaTriangle3DTest1) {
 
 
 /* Orientation test*/
+// TEST(OrientationTest, Orientation2DTest1) {
+//     Point3D point_ref(-0.8, 0.26, -0.57);
+// 	//Point3d point_ref(-0.34, 0, 0);
+// 	cga::Point3D p1(-1,-1,-1);
+// 	cga::Point3D p2(-1,1,-1);
+// 	cga::Point3D p3(-1,1,1);
+
+// 	cga::Vertex3D v1(&p1);
+// 	cga::Vertex3D v2(&p2);
+// 	cga::Vertex3D v3(&p3);
+
+// 	Face f( &v1,&v2,&v3);
+// 	float order = orientation(f, point_ref);
+// 	EXPECT_TRUE(order == 2);
+// }
 
 
 /* Collinearity tests */

@@ -5,7 +5,7 @@
 #include "Plane.h"
 
 namespace cga {
-    // Both 2D and 3D lines share this part of the calculation:
+    // Angle calculation when 3 2D/3D points are given
     template<typename coordinate_type, size_t dimensions>
     static float getAngle(Vector<coordinate_type, dimensions> v1, Vector<coordinate_type, dimensions> v2) {
         // auto l1_mag = l1.get_direction().magnitude();
@@ -22,7 +22,7 @@ namespace cga {
         return radians2Degrees(angle);
     }
 
-    // Angle calculation when 3 2D/3D points are given:
+    // Angle calculation when 3 2D/3D points are given
     template<typename coordinate_type, size_t dimensions>
     static float getAngle(Vector<coordinate_type, dimensions> v0,
                             Vector<coordinate_type, dimensions> v1,

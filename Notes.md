@@ -145,3 +145,22 @@ https://www.geogebra.org/
 
 ## Doubly Connected Edge List (DCEL)
 [This a popular data structure for working with polygons](https://en.wikipedia.org/wiki/Doubly_connected_edge_list)
+
+# Vertices would be classified into 5 types:
+-This lies above that == Y-coordinate of this is greater than that
+-This lies below that == Y-coordinate of this is lesser than that
+
+1. Start vertices: If two neighboring vertices lie below this vertex and the
+interior angle at this vertex is < 180 degrees
+
+2. End vertices: If two neighboring vertices lie above this vertex and the
+interior angle at this vertex is < 180 degrees
+
+3. Regular vertices: If one neighboring vertex is above it and the other one is
+below it
+
+4. Split Vertices: If two neighboring vertices lie below this vertex and the
+interior angle at this vertex is > 180 degrees
+
+5. Merge Vertices: If two neighboring vertices lie above this vertex and the
+interior angle at this vertex is > 180 degrees

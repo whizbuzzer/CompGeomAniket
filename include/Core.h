@@ -4,6 +4,7 @@
 #include <math.h>
 
 namespace cga {
+    #define ZERO 0.0
 
     #define DIM2 2
     #define DIM3 3

@@ -19,10 +19,6 @@ namespace cga {
     template<typename coordinate_type, size_t dimensions> class Vector;
 
     /* Forward declarations so that friend declarations could be used: */
-    // Cross product:
-    template<typename coordinate_type, size_t dimensions>
-    Vector<coordinate_type, dimensions> crossProduct(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2);
-
     // Dot product:
     template<typename coordinate_type, size_t dimensions>
     float dotProduct(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2);
@@ -94,9 +90,6 @@ namespace cga {
 
         // Assign method for modifying an already defined vector
         void assign(unsigned int dimension, coordinate_type value);
-
-        // Cross product:
-        friend Vector crossProduct<coordinate_type, dimensions>(const Vector<coordinate_type, dimensions>&, const Vector<coordinate_type, dimensions>&);
 
         // Dot product:
         friend float dotProduct<coordinate_type, dimensions>(const Vector<coordinate_type, dimensions>&, const Vector<coordinate_type, dimensions>&);
@@ -250,28 +243,6 @@ namespace cga {
         coords[dimension] = value;
     }
 
-    // Cross product of two vectors
-    template<typename coordinate_type, size_t dimensions>
-    inline Vector<coordinate_type, dimensions> crossProduct(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2) {
-        if (v1.size() != v2.size()) {
-            std::cout << "Vectors are not of the same size/dimension. Vectors must be of same size for dot product" << std::endl;
-            return FLT_MIN;  // from <cfloat>
-        }
-
-        if (v1.size() == DIM2) {
-            return (v1[X] * v2[Y]) - (v1[Y] * v2[X]);
-        }
-        
-        else if (v1.size() == DIM3) {
-            float _x = 0, _y = 0, _z = 0;
-            _x = (v1[Y] * v2[Z]) - (v1[Z] * v2[Y]);
-            _y = -((v1[X] * v2[Z]) - (v1[Z] * v2[X]));
-            _z = (v1[X] * v2[Y]) - (v1[Y] * v2[X]);
-
-            return Vector<coordinate_type, dimensions>(_x, _y, _z);
-        }
-    }
-
     // Dot product of two vectors
     template<typename coordinate_type, size_t dimensions>
     inline float dotProduct(const Vector<coordinate_type, dimensions>& v1, const Vector<coordinate_type, dimensions>& v2) {
@@ -302,7 +273,7 @@ namespace cga {
             result_square += pow(coords[i], 2.0);
         }
 
-        return sqrt(result_square);
+        return sqrtf(result_square);
         // Square root is a costly operation. So it isn't uncommon for people to skip taking square root.
     }
 

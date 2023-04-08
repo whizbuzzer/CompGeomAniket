@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <memory>
 #include <vector>
 
 #include "Core.h"
@@ -50,7 +51,7 @@ namespace cga {
         // Populating the polygon:
         for (auto _point:points) {
             // Each point is a vector, and we need it as a vertex:
-            vertex_list.push_back(new Vertex(_point));
+            vertex_list.push_back(std::shared_ptr<cga::Vector<T, dim>>(_point));
         }
         for (size_t i = 0; i < size; i++) {
             // if (i == 0) {
@@ -88,7 +89,7 @@ namespace cga {
     }
 
     template<typename T, size_t dim>
-    inline std::vector<Vertex<T, dim>> Polygon<T, dim>::get_vertices() {
+    inline std::vector<Vertex<T, dim>*> Polygon<T, dim>::get_vertices() {
         return this->vertex_list;
     }
 

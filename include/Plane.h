@@ -35,7 +35,7 @@ namespace cga {
              */
             auto v12 = p2 - p1;
             auto v13 = p3 - p1;
-            normal = crossProduct3D(v12, v13);
+            normal = cga::crossProduct3D(v12, v13);
             normal.normalize();  // For faster calcula
             
             // d would be dot-product of normal and any point

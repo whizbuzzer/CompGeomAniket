@@ -25,7 +25,7 @@ namespace cga {
 
         // Smart pointers have automatic memory management.
         // No need to worry about having a delete
-        std::shared_ptr<EdgeDCEL<T, dim>> empty_edge(new EdgeDCEL<T, dim>());
+        std::shared_ptr<EdgeDCEL<T, dim>> empty_edge = std::make_shared<cga::EdgeDCEL<T, dim>>();
 
     public:
         // Reference ensures that this object is NEVER null.
@@ -68,14 +68,14 @@ namespace cga {
         int size = points_.size();
 
         for (auto point_:points_) {
-            vertex_list.push_back(std::make_shared<VertexDCEL<T, dim>>(point_));
+            vertex_list.push_back(std::make_shared<cga::VertexDCEL<T, dim>>(point_));
         }
 
         // Defining polygon half-edges:
         for (size_t i = 0; i <= vertex_list.size() - 2; i++) {
             auto half_edge = std::make_shared<EdgeDCEL<T, dim>>(vertex_list[i]);
             auto edge_twin = std::make_shared<EdgeDCEL<T, dim>>(vertex_list[i + 1]);
-            vertex_list[i]->incident_edge = half_edge;
+            vertex_list[i]->incident_edge = half_edge.get;
 
             half_edge->twin = edge_twin;
             edge_twin->twin = half_edge;
@@ -138,8 +138,8 @@ namespace cga {
         f1->outer = edge_list[0];
         f2->inner.push_back(edge_list[1]);
 
-        face_list.push_back(f1);
-        face_list.push_back(f2);
+        face_list.push_back(f1.get());
+        face_list.push_back(f2.get());
 
         // Setting incident faces for each outer edge of face f1:
         f1->outer->incident_face = f1;
@@ -159,20 +159,20 @@ namespace cga {
     }
 
     template<typename T, size_t dim>
-    inline void PolygonDCEL::getEdgesFromVertex(VertexDCEL<T, dim>* v,
+    inline void PolygonDCEL<T, dim>::getEdgesFromVertex(VertexDCEL<T, dim>* v,
                                 std::vector<EdgeDCEL<T, dim>*> edges_from_v) {
         auto v_incident_edge = v->incident_edge;
         edges_from_v.push_back(v_incident_edge);
 
         auto next_edge = v_incident_edge->twin->next;
-        while(next_edge != v_incident_edge) {
+        while (next_edge != v_incident_edge) {
             edges_from_v.push_back(next_edge);
             next_edge = next_edge->twin->next;
         }
     }
 
     template<typename T, size_t dim>
-    inline void PolygonDCEL::getEdgesForSplittingPolygon(VertexDCEL<T, dim>* v1,
+    inline void PolygonDCEL<T, dim>::getEdgesForSplittingPolygon(VertexDCEL<T, dim>* v1,
                                         VertexDCEL<T, dim>* v2,
                                         EdgeDCEL<T, dim>** edge_from_v1,
                                         EdgeDCEL<T, dim>** edge_from_v2) {
@@ -216,11 +216,11 @@ namespace cga {
         FaceDCEL<T, dim>* previous_face = edge_from_v1->incident_face;
 
         // Establishing half-edges for the split:
-        std::shared_ptr<EdgeDCEL<T, dim>> half_edge1(new EdgeDCEL<T, dim>(v1));
-        std::shared_ptr<EdgeDCEL<T, dim>> half_edge2(new EdgeDCEL<T, dim>(v2));
+        std::shared_ptr<EdgeDCEL<T, dim>> half_edge1 = std::make_shared<cga::EdgeDCEL<T, dim>>(v1);
+        std::shared_ptr<EdgeDCEL<T, dim>> half_edge2 = std::make_shared<cga::EdgeDCEL<T, dim>>(v2);
 
-        half_edge1->twin = half_edge2;
-        half_edge2->twin = half_edge1;
+        half_edge1->twin = half_edge2.get();
+        half_edge2->twin = half_edge1.get();
 
         half_edge1->next = edge_from_v2;
         half_edge2->next = edge_from_v1;
@@ -228,33 +228,33 @@ namespace cga {
         half_edge1->prev = edge_from_v1->prev;
         half_edge2->prev = edge_from_v2->prev;
 
-        half_edge1->next->prev = half_edge1;
-        half_edge2->next->prev = half_edge2;
+        half_edge1->next->prev = half_edge1.get();
+        half_edge2->next->prev = half_edge2.get();
 
-        half_edge1->prev->next = half_edge1;
-        half_edge2->prev->next = half_edge2;
+        half_edge1->prev->next = half_edge1.get();
+        half_edge2->prev->next = half_edge2.get();
 
         // Establishing new faces:
-        std::shared_ptr<FaceDCEL<T, dim>> new_face1(new FaceDCEL<T, dim>());
-        new_face1->outer = half_edge1;
-        half_edge1->incident_face = new_face1;
+        std::shared_ptr<FaceDCEL<T, dim>> new_face1 = std::make_shared<FaceDCEL<T, dim>>();
+        new_face1->outer = half_edge1.get();
+        half_edge1->incident_face = new_face1.get();
         auto temp_edge = half_edge1->next;
-        while (temp_edge != half_edge1) {
-            temp_edge->incident_face = new_face1;
+        while (temp_edge != half_edge1.get()) {
+            temp_edge->incident_face = new_face1.get();
             temp_edge = temp_edge->next;
         }
 
-        std::shared_ptr<FaceDCEL<T, dim>> new_face2(new FaceDCEL<T, dim>());
-        new_face2->outer = half_edge2;
-        half_edge2->incident_face = new_face2;
-        auto temp_edge = half_edge2->next;
-        while (temp_edge != half_edge2) {
-            temp_edge->incident_face = new_face2;
+        std::shared_ptr<FaceDCEL<T, dim>> new_face2 = std::make_shared<FaceDCEL<T, dim>>();
+        new_face2->outer = half_edge2.get();
+        half_edge2->incident_face = new_face2.get();
+        temp_edge = half_edge2->next;
+        while (temp_edge != half_edge2.get()) {
+            temp_edge->incident_face = new_face2.get();
             temp_edge = temp_edge->next;
         }
 
-        face_list.push_back(new_face1);
-        face_list.push_back(new_face2);
+        face_list.push_back(new_face1.get());
+        face_list.push_back(new_face2.get());
 
         // Updating faces:
         auto itr = std::find(face_list.begin(), face_list.end(), previous_face);
@@ -301,4 +301,6 @@ namespace cga {
         std::cout << "Vertex with given point does not exist" << std::endl;
         return nullptr;
     }
+
+    typedef PolygonDCEL<float, DIM2>    PolygonDCEL2D;
 }

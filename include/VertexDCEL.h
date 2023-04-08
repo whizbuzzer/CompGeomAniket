@@ -9,7 +9,7 @@
 
 namespace cga {
     // For DCEL ear-clipping triangulation implementation:
-    template<typename T=float, size_t dim>
+    template<typename T, size_t dim>
     struct VertexDCEL {
         Vector<float, dim> point;             // Vertex coordinates
         // Edge starting from this vertex.
@@ -25,5 +25,7 @@ namespace cga {
                 std::cout << point[Z];
             std::cout << ")" << std::endl;
         }
-    }
+    };
+
+    typedef VertexDCEL<float, DIM2>     VertexDCEL2D;
 }

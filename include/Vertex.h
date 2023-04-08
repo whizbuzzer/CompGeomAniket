@@ -5,6 +5,10 @@
 
 
 namespace cga {
+    // Forward declaration for friend declaration:
+    template<typename T, size_t dim>
+    class Polygon; 
+
     // Basic component of a polygon. We are going to construct the polygon
     // by going through vertices in a counter-clockwise order. It will function
     // like a "Node" in a Doubly Linked-List/Bi-directional Graph:

@@ -3,12 +3,12 @@
 #include <vector>
 
 #include "Angle.h"
+#include "Core.h"
 #include "GeoUtils.h"
 #include "Intersection.h"
+#include "Vector.h"
 
-namespace cga {
-    #define ZERO 0.0
-    
+namespace cga {    
     /* Area Methods */
     /* Gotta templatize these methods */
     // template<typename T, size_t dim>
@@ -30,14 +30,15 @@ namespace cga {
     double areaTriangle2D(const Point2D& a,
                           const Point2D& b,
                           const Point2D& c) {
-        // Using overloaded operators
-        auto AB = b - a;
-        auto AC = c - a;
+        // // Using overloaded operators
+        // auto AB = b - a;
+        // auto AC = c - a;
 
-        // When two vectors are known, cross product can be used to find area of
-        // the triangle of which those two vectors are constituents
-        auto result = crossProduct2D(AB, AC);
-        return result / 2;  // Can return positive as well as negative values
+        // // When two vectors are known, cross product can be used to find area of
+        // // the triangle of which those two vectors are constituents
+        // auto result = crossProduct2D(AB, AC);
+        // return result / 2;  // Can return positive as well as negative values
+        return 0.5 * ((b[X] - a[X]) * (c[Y] - a[Y]) - (c[X] - a[X]) * (b[Y] - a[Y]));
     }
 
     double areaTriangle3D(const Point3D& a,
@@ -46,7 +47,7 @@ namespace cga {
         auto AB = b - a;
         auto AC = c - a;
 
-        auto result = crossProduct3D(AB, AC).magnitude();
+        auto result = cga::crossProduct3D(AB, AC).magnitude();
         return result / 2;
     }
 
@@ -139,12 +140,14 @@ namespace cga {
         return BETWEEN;        
     }
 
+    // Checks if a target point is to the left of a line formed by 2 points:
     bool left(const Point2D& target,
                 const Point2D& line_end1,
                 const Point2D& line_end2) {
         return orientation2D(target, line_end1, line_end2) == LEFT;
     }
 
+    // Checks if a target point is to the left of a line:
     bool left(const Line2D& line, const Point2D& target) {
         auto line_normal = line.get_normal_vector();
         auto value1 = dotProduct(line_normal, target);
@@ -152,12 +155,14 @@ namespace cga {
         return (value1 - value2) < 0 ? false : true;
     }
 
+    // Checks if a target point is to the right of a line formed by 2 points:
     bool right(const Point3D& target,
                 const Point3D& line_end1,
                 const Point3D& line_end2) {
         return orientation3D(target, line_end1, line_end2) == RIGHT;
     }
 
+    // Checks if a target point is to the left of a line formed by 2 points or beyond:
     bool leftOrBeyond(const Point2D& target,
                         const Point2D& line_end1,
                         const Point2D& line_end2) {
@@ -165,6 +170,7 @@ namespace cga {
         return (orientation == LEFT || orientation == BEYOND);
     }
 
+    // Checks if a target point is to the left of a line or beyond:
     bool leftOrBeyond(const Point3D& target,
                         const Point3D& line_end1,
                         const Point3D& line_end2) {
@@ -172,6 +178,7 @@ namespace cga {
         return (orientation == LEFT || orientation == BEYOND);
     }
 
+    // Checks if a target point is to the left of a line formed by 2 points or on the line:
     bool leftOrBetween(const Point3D& target,
                         const Point3D& line_end1,
                         const Point3D& line_end2) {
@@ -263,12 +270,12 @@ namespace cga {
     // neighboring vertices are on opposite sides of the line.
     // 3. Start vertex is a concave vertex (inner angle > 180 degrees) and
     // line extending from it lies inside the polygon only.
-    bool isDiagonal(const Vertex2D* v1, const Vertex2D* v2, Polygon2D* poly=nullptr) {
+    bool isDiagonal(const Vertex2D* v1, const Vertex2D* v2, Polygon2D* poly) {
         bool possibleDiagonal = true;
         std::vector<Vertex2D*> vertices;
 
         // Based on whether polygon pointer is defined or not, we will record ALL vertices:
-        if(poly) {
+        if (poly) {
             vertices = poly->get_vertices();
         } else {
             vertices.push_back((Vertex2D*)v1);  // Ensuring correct datatype is inserted
@@ -300,6 +307,10 @@ namespace cga {
 
     /* Convex angle check (checking whether interior angle < 180 degrees) */
     bool isConvex(const Vertex2D* v0, const Vertex2D* v1, const Vertex2D* v2) {
-        return (getAngle(*v0, *v1, *v2) < 180);
+        return (getAngle(v0->point, v1->point, v2->point) < 180);
     }
 }
+
+// int main() {
+//     return 0;
+// }

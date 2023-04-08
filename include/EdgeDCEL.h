@@ -14,6 +14,7 @@ namespace cga {
     // counter-clockwise direction    
     template<typename T, size_t dim>
     struct EdgeDCEL {
+        // If edge starts from vertex "V1", then the edge would be named "e1"
         VertexDCEL<T, dim>* origin = nullptr;  // From where half-edge starts
         EdgeDCEL<T, dim>* twin = nullptr;      // twin half-edge
         EdgeDCEL<T, dim>* next = nullptr;      // previous half-edge in CCW direction
@@ -46,5 +47,7 @@ namespace cga {
             return twin->origin;
         }
         
-    }
+    };
+
+    typedef EdgeDCEL<float, DIM2>     EdgeDCEL2D;
 }
