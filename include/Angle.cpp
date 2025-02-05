@@ -36,3 +36,7 @@ namespace cga {
         return getAngle(p1.get_normal(), p2.get_normal());
     }
 }
+
+int main() {
+    return 0;
+}

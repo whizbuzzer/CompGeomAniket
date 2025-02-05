@@ -128,3 +128,7 @@ namespace cga {
         }
     }
 }
+
+int main() {
+    return 0;
+}

@@ -65,3 +65,7 @@ float cga::distance(Planef& plane, Point3D& point) {
 
     return _distance;
 }
+
+int main() {
+    return 0;
+}

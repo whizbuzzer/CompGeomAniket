@@ -43,7 +43,7 @@
 
 
 ## Template classes need their methods declared as "inline"
-# Template methods must be defined in the header file itself
+## Template methods must be defined in the header file itself
 [Reference](https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl)
 
 
@@ -56,30 +56,30 @@
         3. During this declaration, state the custom datatype arguments of the method inside <>
         4. Define the friend template function properly after the class.
         > The whole thing will look as follows:
-        ```
-        // template class initialization so that it could be used by future-friend template method:
-        template<typename T, size_t size> class Menace;
+```
+// template class initialization so that it could be used by future-friend template method:
+template<typename T, size_t size> class Menace;
 
-        // future-friend template method initialization:
-        template<typename T, size_t size>
-        Menace<T, size> enrage(Menace<T, size>& dennis);
+// future-friend template method initialization:
+template<typename T, size_t size>
+Menace<T, size> enrage(Menace<T, size>& dennis);
 
-        // Specifying template method as friend inside class definition:
-        template<typename T, size_t size>
-        class Menace {
-            int chaos = 69;
-        public:
-            Menace() {}
+// Specifying template method as friend inside class definition:
+template<typename T, size_t size>
+class Menace {
+    int chaos = 69;
+public:
+    Menace() {}
 
-            friend Menace enrage<T, size>(Menace<T, size>& dennis);
-        };
+    friend Menace enrage<T, size>(Menace<T, size>& dennis);
+};
 
-        // friend template method definition:
-        template<typename T, size_t size>
-        Menace<T, size> enrage(Menace<T, size>& dennis) {
-            ...
-        };
-        ```
+// friend template method definition:
+template<typename T, size_t size>
+Menace<T, size> enrage(Menace<T, size>& dennis) {
+    ...
+};
+```
 
 
 ## GoogleTest stuff
@@ -102,6 +102,7 @@
 
 ## CMake stuff for unit testing
 [Read this](https://cmake.org/cmake/help/latest/manual/cmake.1.html)
+
     ```
     # If you aren't already in the folder with CMakeLists.txt:
     cd <path_to_CMakeListsdottxt>
@@ -140,13 +141,19 @@ will make only the failing test run as well as display its output.
 
     > Overcome this with "sudo apt install libgtest-dev googletest"
 
+
 ## Geogebra is a good tool for visualization purposes
 https://www.geogebra.org/
+
 
 ## Doubly Connected Edge List (DCEL)
 [This a popular data structure for working with polygons](https://en.wikipedia.org/wiki/Doubly_connected_edge_list)
 
-# Vertices would be classified into 5 types:
+
+## Polygon-Triangulation by Ear-Clipping
+
+
+## Vertices would be classified into 5 types:
 -This lies above that == Y-coordinate of this is greater than that
 -This lies below that == Y-coordinate of this is lesser than that
 
@@ -164,3 +171,4 @@ interior angle at this vertex is > 180 degrees
 
 5. Merge Vertices: If two neighboring vertices lie above this vertex and the
 interior angle at this vertex is > 180 degrees
+

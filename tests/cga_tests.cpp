@@ -3,7 +3,11 @@
 
 #include "Angle.h"
 #include "Core.h"
+#include "Distance.h"
 #include "GeoUtils.h"
+#include "Intersection.h"
+#include "Line.h"
+#include "Plane.h"
 #include "Point.h"
 #include "Vector.h"
 
@@ -18,6 +22,7 @@
 // TEST(TestSuiteName. TestName)
 
 /* Angle calculation tests */
+// Two 2D lines
 TEST(AngleTest, AngleLines2DTest1) {
     // Defining point and directions for lines:
     cga::Point2D l1P(0, 3);
@@ -35,6 +40,7 @@ TEST(AngleTest, AngleLines2DTest1) {
     EXPECT_TRUE(cga::isEqualD(53.1301, angle));
 }
 
+// Two 3D lines
 TEST(AngleTest, AngleLines3DTest1) {
     // Defining point and directions for lines:
     cga::Point3D l1P1(1, 5, 5);
@@ -52,6 +58,7 @@ TEST(AngleTest, AngleLines3DTest1) {
     EXPECT_TRUE(cga::isEqualD(43.0791, angle));
 }
 
+// 3D line and plane
 TEST(AngleTest, AngleLinePlaneTest1) {
     // Defining points and normal for line and plane respectively:
     cga::Point3D l1P1(-3, -4, -5);
@@ -68,6 +75,7 @@ TEST(AngleTest, AngleLinePlaneTest1) {
     EXPECT_TRUE(cga::isEqualD(25.5402, angle));
 }
 
+// Two planes
 TEST(AngleTest, AnglePlanesTest1) {
     // Defining normals for planes
     cga::Vector3D p1Normal(1.68, 0.42, 2.35);
@@ -85,6 +93,7 @@ TEST(AngleTest, AnglePlanesTest1) {
 
 
 /* Area calculation tests */
+// 2D triangle area
 TEST(AreaTest, AreaTriangle2DTest1) {
     cga::Point2D A(3.98, 4.14);
     cga::Point2D B(1.2, 1.2);
@@ -96,6 +105,7 @@ TEST(AreaTest, AreaTriangle2DTest1) {
     EXPECT_TRUE(cga::isEqualD(7.8434, area));
 }
 
+// 3D triangle area
 TEST(AreaTest, AreaTriangle3DTest1) {
     cga::Point3D A(-2.8017,7.7327,0);
     cga::Point3D B(-1.0824,6.8348,2.6179);
@@ -108,29 +118,8 @@ TEST(AreaTest, AreaTriangle3DTest1) {
 }
 
 
-/* Distance tests */
-
-
-
-/* Orientation test*/
-// TEST(OrientationTest, Orientation2DTest1) {
-//     Point3D point_ref(-0.8, 0.26, -0.57);
-// 	//Point3d point_ref(-0.34, 0, 0);
-// 	cga::Point3D p1(-1,-1,-1);
-// 	cga::Point3D p2(-1,1,-1);
-// 	cga::Point3D p3(-1,1,1);
-
-// 	cga::Vertex3D v1(&p1);
-// 	cga::Vertex3D v2(&p2);
-// 	cga::Vertex3D v3(&p3);
-
-// 	Face f( &v1,&v2,&v3);
-// 	float order = orientation(f, point_ref);
-// 	EXPECT_TRUE(order == 2);
-// }
-
-
 /* Collinearity tests */
+// If three 2D points are collinear as vectors
 TEST(CollinearTest, isCollinear2DTest1) {
     cga::Point2D a(0, 0);
     cga::Point2D b(1, 1);
@@ -139,17 +128,19 @@ TEST(CollinearTest, isCollinear2DTest1) {
     cga::Vector2D v1 = b - a;
     cga::Vector2D v2 = c - a;
 
-    EXPECT_TRUE(cga::isEqualD(true, cga::isCollinear2D(v1, v2)));
+    EXPECT_TRUE(cga::isEqualF(true, cga::isCollinear2D(v1, v2)));
 }
 
+// If three 2D points are collinear
 TEST(CollinearTest, isCollinear2DTest2) {
     cga::Point2D a(0, 0);
     cga::Point2D b(1, 1);
     cga::Point2D c(2, 2);
     
-    EXPECT_TRUE(cga::isEqualD(true, cga::isCollinear2D(a, b, c)));
+    EXPECT_TRUE(cga::isEqualF(true, cga::isCollinear2D(a, b, c)));
 }
 
+// If three 3D points are collinear as vectors
 TEST(CollinearTest, isCollinear3DTest1) {
     cga::Point3D a(0, 0, 0);
     cga::Point3D b(1, 1, 1);
@@ -158,15 +149,16 @@ TEST(CollinearTest, isCollinear3DTest1) {
     cga::Vector3D v1 = b - a;
     cga::Vector3D v2 = c - a;
 
-    EXPECT_TRUE(cga::isEqualD(true, cga::isCollinear3D(v1, v2)));
+    EXPECT_TRUE(cga::isEqualF(true, cga::isCollinear3D(v1, v2)));
 }
 
+// If three 3D points are collinear
 TEST(CollinearTest, isCollinear3DTest2) {
     cga::Point3D a(0, 0, 0);
     cga::Point3D b(1, 1, 1);
     cga::Point3D c(2, 2, 2);
     
-    EXPECT_TRUE(cga::isEqualD(true, cga::isCollinear3D(a, b, c)));
+    EXPECT_TRUE(cga::isEqualF(true, cga::isCollinear3D(a, b, c)));
 }
 
 
@@ -181,7 +173,82 @@ TEST(CoplanarTest, isCoplanarTest1) {
 }
 
 
-/* */
+/* Distance tests */
+// 3D point and 3D line
+TEST(DistanceTest, DistancePointLine3DTest1) {
+    cga::Point3D point_0(-1, -9, 1);
+
+    cga::Point3D line_end_1(-10, 8, 2);
+    cga::Point3D line_end_2(8, 5, -3);
+    cga::Line3D line_0(line_end_1, line_end_2);
+
+    float distance_1 = cga::distance(line_0, point_0);
+    float distance_2 = cga::distance(line_end_1, line_end_2, point_0);
+
+    EXPECT_TRUE(cga::isEqualF(distance_1, distance_2));
+}
+
+/* Intersection tests */
+// two 2D lines
+TEST(LineIntersection, intersection)
+{
+	cga::Point2D p1, p2 , p_intersect;
+	p1.assign(X,5);
+	p1.assign(Y, 10);
+	p2.assign(X,11);
+	p2.assign(Y, 8.4);
+
+	cga::Vector2D v1, v2;
+	v1.assign(X, 3);
+	v1.assign(Y,-3);
+	v2.assign(X,-5);
+	v2.assign(Y, -3);
+
+	cga::Line2D l1(p1, v1);
+	cga::Line2D l2(p2, v2);
+
+	bool result = cga::intersection(l1, l2, p_intersect);
+
+	EXPECT_TRUE(result);
+}
+
+// two planes
+// TEST(IntersectionTest, TwoPlanesIntersectionTest1) {
+//     cga::Vector3D normal_1(1, 2, 3);
+//     cga::Vector3D normal_2(2, 5, -2);
+
+//     float d1 = 6 / normal_1.magnitude();
+// 	float d2 = -4 / normal_2.magnitude();
+
+// 	cga::Plane plane_1(normal_1, d1);
+// 	cga::Plane plane_2(normal_2, d2);
+
+// 	Line l1;
+
+// 	auto result = intersect(plane_1, plane_2, l1);
+
+// 	EXPECT_TRUE(cga::isEqual2(83.549, result));
+// }
+
+
+/* Orientation test*/
+// TEST(OrientationTest, Orientation3DTest1) {
+//     Point3D point_ref(-0.8, 0.26, -0.57);
+// 	//Point3d point_ref(-0.34, 0, 0);
+// 	cga::Point3D p1(-1,-1,-1);
+// 	cga::Point3D p2(-1,1,-1);
+// 	cga::Point3D p3(-1,1,1);
+
+// 	cga::Vertex3D v1(&p1);
+// 	cga::Vertex3D v2(&p2);
+// 	cga::Vertex3D v3(&p3);
+
+// 	cga::Face f( &v1,&v2,&v3);
+// 	float order = orientation(f, point_ref);
+// 	EXPECT_TRUE(order == 2);
+// }
+
+
 // int main(int argc, char** argv) {
 //     ::testing::InitGoogleTest(&argc, argv);
 //     return RUN_ALL_TESTS();

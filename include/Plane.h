@@ -7,9 +7,9 @@ namespace cga {
     
     template<typename coordinate_type>  // dimensions not needed since planes are always 3D
     class Plane {
-        // Normal-point form ( n . X = d )
+        // Normal-point form ( n . X = d ) where X is any point on the plane
         Vector3D normal;
-        float d = 0;  // Ax + By + Cz = D
+        float d = 0;  // This is the same "D" from Ax + By + Cz = D
 
     public:
         Plane() {}
@@ -40,10 +40,6 @@ namespace cga {
             
             // d would be dot-product of normal and any point
             d = dotProduct(normal, p1);
-            /* dotProduct is part of the Vector template class
-             * unlike crossProduct3D. Hence, "dotProduct()" cannot be used 
-             * without its prefix"
-             */
         }
 
         /* Operators */

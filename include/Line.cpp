@@ -48,3 +48,7 @@ namespace cga {
         point.assign(Y, p[Y]);
     }
 }
+
+int main() {
+    return 0;
+}

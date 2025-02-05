@@ -69,3 +69,7 @@ namespace cga {
         }
     }  // Time complexity: ~O(n^2)
 }
+
+int main() {
+    return 0;
+}
