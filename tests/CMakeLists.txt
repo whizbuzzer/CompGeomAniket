@@ -24,8 +24,6 @@ set(INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 # Because certain methods are defined outside the header files:
 file(GLOB SOURCES
     ${INCLUDE_DIRECTORIES}/*.cpp
-    # ${INCLUDE_DIRECTORIES}/Line.cpp
-    # ${INCLUDE_DIRECTORIES}/Vector.cpp
 )
 
 add_executable(

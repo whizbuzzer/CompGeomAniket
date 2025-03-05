@@ -44,5 +44,6 @@
         "list": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/tests",
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "ros.distro": "humble"
 }

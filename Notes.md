@@ -4,22 +4,20 @@
 ## Header file and cpp file implementation
     > Good practice for coding in C++ is to create .h files containing
     declarations, and then corresponding .cpp files defining those definitions.
+
     This speeds up the compiling process as this would only compile the needed parts
-    of a certain program rather than the entire program. For some reason, picking up
-    different parts of a gun, assembling the gun and then using it is faster in
-    C++ than simply picking up the gun and using it because the gun "might carry
-    unnecessary modifications".
+    of a certain program rather than the entire program.
 
-    > If a header "whatevs.h" declares a function "whatevs", "whatevs.cpp" defines 
-    that function by borrowing it from the "whatevs.h", and a file "dummy.cpp"
-    includes "whatevs.h" and uses the function "whatevs", then run the following
+    > Let's say we have a header file "functionsX.h" which declares a function "function0". Let's say then that "functionsX.cpp" defines 
+    that function0 by borrowing it from the "functionsX.h". Now, if a file "main.cpp"
+    includes "functionsX.h" and uses the function "function0", then run the following
     line in the command line to ensure that you don't get that "function reference
-    is undefined" crap:
+    is undefined" error:
 
     ```
-    g++ dummy.cpp whatevs.cpp
+    g++ main.cpp functionsX.cpp
     ```
-    But this won't be necessary with proper cmaking
+    But this won't be necessary with a properly defined CMakeLists.txt 
 
 [Follow this style convention](https://google.github.io/styleguide/cppguide.html)
 
@@ -42,7 +40,11 @@
     Source: https://en.wikipedia.org/wiki/Pragma_once
 
 
-## Template classes need their methods declared as "inline"
+## Regarding inline functions
+    > Non-template functions
+## Template classes notes:
+    > Template classes need their methods declared as "inline" in 2 cases:
+        >If the
 ## Template methods must be defined in the header file itself
 [Reference](https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl)
 

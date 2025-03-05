@@ -21,12 +21,12 @@ file(GLOB SOURCES
 )
 
 add_executable(
-    dummy
-    src/dummy.cpp
+    main
+    src/main.cpp
     ${SOURCES}
 )
 
 target_include_directories(
-    dummy PRIVATE
+    main PRIVATE
     ${INCLUDE_DIRECTORIES}
 )
